@@ -1,101 +1,505 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ShieldCheck, BadgeDollarSign, Clock, Search, Star, CheckCircle2, Users } from "lucide-react";
+import QuoteForm from "@/components/QuoteForm";
+import SearchHero from "@/components/SearchHero";
+import ContractorCard from "@/components/ContractorCard";
+import { locations } from "@/lib/locations";
+import { services } from "@/lib/services";
+import { contractors } from "@/lib/contractors";
+import type { Metadata } from "next";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "LocalRoofer.ca — Trusted Roofing in Toronto & the GTA",
+  description:
+    "Get a free roofing quote from LocalRoofer.ca. We connect Toronto & GTA homeowners with licensed, insured local roofers for repair, replacement, inspection, and emergency service.",
+  alternates: { canonical: "https://www.localroofer.ca" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.localroofer.ca",
+  name: "LocalRoofer.ca",
+  description:
+    "LocalRoofer.ca connects Toronto and Greater Toronto Area homeowners with trusted, licensed local roofing contractors for roof repair, replacement, inspection, and emergency service.",
+  url: "https://www.localroofer.ca",
+  telephone: "+14165550100",
+  email: "info@localroofer.ca",
+  image: "https://www.localroofer.ca/og-image.jpg",
+  priceRange: "$$",
+  openingHours: "Mo-Fr 07:00-18:00",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Toronto",
+    addressRegion: "ON",
+    addressCountry: "CA",
+  },
+  areaServed: locations.map((city) => ({
+    "@type": "City",
+    name: city.name,
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Roofing Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Roof Repair",
+          description:
+            "Professional roof repair for leaks, storm damage, missing shingles, flashing, and more.",
+          url: "https://www.localroofer.ca/services/roof-repair",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Roof Replacement",
+          description:
+            "Full roof replacement using premium asphalt, metal, and flat roofing systems.",
+          url: "https://www.localroofer.ca/services/roof-replacement",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Roof Inspection",
+          description:
+            "Detailed roof inspections for home buyers, sellers, and owners across the GTA.",
+          url: "https://www.localroofer.ca/services/roof-inspection",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Emergency Roofing",
+          description:
+            "24/7 emergency roofing response for storm damage, active leaks, and fallen debris.",
+          url: "https://www.localroofer.ca",
+        },
+      },
+    ],
+  },
+  sameAs: [],
+};
+
+/* ── Trust badge data ─────────────────────────────────────────────── */
+const trustBadges = [
+  {
+    icon: ShieldCheck,
+    title: "Licensed & Insured",
+    desc: "Every roofer in our network holds a valid Ontario contractor licence and full liability coverage.",
+  },
+  {
+    icon: BadgeDollarSign,
+    title: "Free Estimates",
+    desc: "No cost, no obligation. Get an honest written quote before any work begins.",
+  },
+  {
+    icon: Clock,
+    title: "Fast Response",
+    desc: "We reply within hours, not days. Emergency calls answered 7 days a week.",
+  },
+];
+
+/* ── How It Works steps ───────────────────────────────────────────── */
+const howItWorksSteps = [
+  {
+    number: "1",
+    icon: Search,
+    title: "Search & Compare",
+    desc: "Browse verified, rated contractors in your city. Filter by service type, roof type, and location to find the right fit.",
+  },
+  {
+    number: "2",
+    icon: Star,
+    title: "Read Real Reviews",
+    desc: "Every contractor profile includes real homeowner reviews, ratings out of 10, and verified credentials — so you can choose with confidence.",
+  },
+  {
+    number: "3",
+    icon: CheckCircle2,
+    title: "Get a Free Quote",
+    desc: "Contact your chosen contractor directly or fill out our quick quote form — expect a response within hours, no pressure, no obligation.",
+  },
+];
+
+/* ── Roof types ───────────────────────────────────────────────────── */
+const roofTypes = [
+  {
+    title: "Shingle Roofing",
+    desc: "Asphalt shingles are the most common roofing material in Ontario, offering an excellent balance of cost, durability, and aesthetic variety. Modern architectural shingles carry 30 to 50-year manufacturer warranties and are engineered specifically for Canadian freeze-thaw conditions.",
+    services: ["Roof Repair", "Roof Replacement", "Roof Inspection"],
+  },
+  {
+    title: "Metal Roofing",
+    desc: "Metal roofing systems — standing seam steel, corrugated panels, and stone-coated metal — offer exceptional longevity of 40 to 70 years with minimal maintenance. Metal is an outstanding choice for Ontario homes exposed to heavy snow loads, ice, and hail.",
+    services: ["Roof Repair", "Roof Replacement", "Roof Inspection"],
+  },
+  {
+    title: "Flat Roofing",
+    desc: "TPO, EPDM, and modified bitumen flat roof systems are essential for garages, additions, and modern homes with low-slope designs. Proper drainage design and membrane selection are critical to surviving Ontario's freeze-thaw cycles and heavy snowfall seasons.",
+    services: ["Flat Roof Services", "Roof Inspection", "Emergency Roofing"],
+  },
+];
+
+/* ── Homepage stats ───────────────────────────────────────────────── */
+const stats = [
+  { value: "6", label: "Verified Contractors" },
+  { value: "603+", label: "Homeowner Reviews" },
+  { value: "15", label: "GTA Cities Served" },
+  { value: "9.4/10", label: "Average Rating" },
+];
+
+/* ── Homepage FAQ ─────────────────────────────────────────────────── */
+const homepageFaq = [
+  {
+    q: "What does a roof inspection cost?",
+    a: "A professional roof inspection with a written report typically costs between $150 and $350 in the GTA, depending on roof size and complexity. For home buyers, the investment is minimal compared to the cost of an undetected defect. Many contractors in our network also offer free visual assessments as part of a repair or replacement quote.",
+  },
+  {
+    q: "How long does a roof replacement take?",
+    a: "Most residential roof replacements in the GTA are completed in one to two days. A straightforward bungalow with good access can often be done in a single day. Larger homes, steep pitches, or jobs requiring deck repair may take two to three days. You'll receive a clear timeline in your written quote before any work begins.",
+  },
+  {
+    q: "Do I need a permit to replace my roof in Ontario?",
+    a: "For a standard like-for-like shingle replacement on a residential home, a building permit is generally not required in most Ontario municipalities. However, if structural work is involved — such as replacing roof decking, changing the roof system type, or modifying the roof structure — a permit may be required. Your contractor will advise you and handle any permit applications on your behalf.",
+  },
+  {
+    q: "How do I know if I need a repair or full replacement?",
+    a: "A repair is usually appropriate when damage is localized — a few missing shingles, a failed flashing, or a single leak point — and the rest of the roof is in good condition with reasonable remaining lifespan. A replacement makes more sense when the roof is 20+ years old, repairs have become frequent, granule loss is widespread, or the decking is showing signs of rot or structural compromise. A professional inspection will give you a clear recommendation.",
+  },
+  {
+    q: "What roofing materials work best for Ontario winters?",
+    a: "For sloped roofs, architectural (laminated) asphalt shingles rated Class 4 impact-resistant, installed with ice-and-water shield along eaves and valleys and a proper ridge ventilation system, perform extremely well in Ontario winters. For flat roofs, TPO membrane is currently the most popular choice due to its flexibility in cold temperatures and resistance to UV and ponding. Metal roofing is an excellent premium option for exceptional longevity under heavy snow and ice conditions.",
+  },
+  {
+    q: "How quickly can you respond to an emergency?",
+    a: "Our GTA emergency roofing contractors typically respond within two to four hours of an initial call during daylight hours. For serious structural emergencies — active leaks, tree impact, or large-area shingle blowoff — we do our best to have a contractor on site the same day. Emergency tarping to stop water ingress is deployed immediately on arrival, followed by a full damage assessment and plan for permanent repairs.",
+  },
+];
+
+/* ═══════════════════════════════════════════════════════════════════ */
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* ══ HERO ══════════════════════════════════════════════════════ */}
+      <section className="relative bg-[#0F172A] overflow-hidden">
+        {/* Subtle grid texture overlay */}
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        {/* Content */}
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center">
+          <span className="inline-block bg-[#F97316]/10 text-[#F97316] text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-6 border border-[#F97316]/20">
+            Toronto &amp; Greater Toronto Area
+          </span>
+
+          <h1 className="text-5xl sm:text-6xl font-extrabold text-white leading-tight tracking-tight mb-5 text-balance">
+            Find a Trusted Roofer<br className="hidden sm:block" />{" "}
+            in <span className="text-orange-500">Toronto & the GTA</span>
+          </h1>
+
+          <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Browse verified, rated roofing contractors. Compare reviews, check credentials,
+            and get a free quote — all in one place.
+          </p>
+
+          {/* Search box */}
+          <SearchHero />
+
+          {/* Secondary CTA */}
+          <div className="mt-6 flex items-center justify-center gap-4 flex-wrap">
+            <Link
+              href="#quote"
+              className="text-white/50 hover:text-white text-sm transition-colors underline underline-offset-4"
+            >
+              Or fill out our quick quote form
+            </Link>
+            <span className="text-white/20 hidden sm:block">·</span>
+            <Link
+              href="/find"
+              className="text-orange-400 hover:text-orange-300 text-sm font-medium transition-colors"
+            >
+              Browse all contractors →
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* ══ TRUST BADGES ══════════════════════════════════════════════ */}
+      <section className="bg-slate-50 py-16 px-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {trustBadges.map(({ icon: Icon, title, desc }) => (
+            <div
+              key={title}
+              className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex flex-col items-start gap-4 hover:shadow-md transition-shadow"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[#F97316]/10 flex items-center justify-center shrink-0">
+                <Icon className="w-6 h-6 text-[#F97316]" strokeWidth={1.8} />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 text-base mb-1">{title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══ FEATURED CONTRACTORS ══════════════════════════════════════ */}
+      <section className="bg-[#0F172A] py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+                Top-Rated GTA Roofers
+              </h2>
+              <p className="text-slate-400 text-base max-w-xl">
+                Verified contractors with the highest ratings from real homeowner reviews.
+              </p>
+            </div>
+            <Link
+              href="/find"
+              className="text-orange-400 hover:text-orange-300 text-sm font-semibold transition-colors whitespace-nowrap"
+            >
+              See all contractors →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {[...contractors]
+              .sort((a, b) => b.rating - a.rating)
+              .slice(0, 3)
+              .map((c) => (
+                <ContractorCard key={c.slug} contractor={c} />
+              ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              href="/find"
+              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
+            >
+              Browse All {contractors.length} Contractors
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ HOW IT WORKS ══════════════════════════════════════════════ */}
+      <section className="bg-white py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+              How It Works
+            </h2>
+            <p className="text-gray-500 text-base max-w-xl mx-auto">
+              Getting a free roofing quote through LocalRoofer.ca takes minutes — here's what happens next.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {howItWorksSteps.map(({ number, icon: Icon, title, desc }) => (
+              <div
+                key={number}
+                className="relative bg-slate-50 rounded-2xl border border-gray-100 p-8 flex flex-col items-start gap-5"
+              >
+                {/* Step number badge */}
+                <span className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-[#F97316] text-white text-sm font-bold flex items-center justify-center shadow-md shadow-[#F97316]/30">
+                  {number}
+                </span>
+                <div className="w-12 h-12 rounded-xl bg-[#F97316]/10 flex items-center justify-center shrink-0">
+                  <Icon className="w-6 h-6 text-[#F97316]" strokeWidth={1.8} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-[#0F172A] text-base mb-2">{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ SERVICES GRID ═════════════════════════════════════════════ */}
+      <section className="bg-slate-50 py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+              Our Roofing Services
+            </h2>
+            <p className="text-gray-500 text-base max-w-2xl mx-auto">
+              From a single missing shingle to a complete roof replacement, LocalRoofer.ca connects GTA homeowners with the right licensed contractor for every job.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service) => (
+              <div
+                key={service.slug}
+                className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex flex-col gap-4 hover:shadow-md hover:border-[#F97316]/30 transition-all"
+              >
+                <div>
+                  <h3 className="font-bold text-[#0F172A] text-base mb-2">{service.name}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">{service.tagline}</p>
+                </div>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="mt-auto text-[#F97316] font-semibold text-sm hover:underline"
+                >
+                  Learn more &rarr;
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ ROOF TYPES ════════════════════════════════════════════════ */}
+      <section className="bg-white py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+              Roof Types We Service
+            </h2>
+            <p className="text-gray-500 text-base max-w-xl mx-auto">
+              Our contractor network covers every major residential roofing system used across the GTA.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {roofTypes.map((rt) => (
+              <div
+                key={rt.title}
+                className="bg-slate-50 rounded-2xl border border-gray-100 p-8 flex flex-col gap-5"
+              >
+                <div className="w-12 h-1 rounded-full bg-[#F97316]" />
+                <div>
+                  <h3 className="font-bold text-[#0F172A] text-lg mb-3">{rt.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{rt.desc}</p>
+                </div>
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {rt.services.map((s) => (
+                    <span
+                      key={s}
+                      className="text-xs bg-[#F97316]/10 text-[#F97316] font-medium px-2.5 py-1 rounded-full border border-[#F97316]/20"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ STATS STRIP ═══════════════════════════════════════════════ */}
+      <section className="bg-[#0F172A] py-16 px-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+          {stats.map(({ value, label }) => (
+            <div key={label} className="flex flex-col items-center gap-2">
+              <span className="text-4xl font-extrabold text-[#F97316] tracking-tight">{value}</span>
+              <span className="text-white/60 text-sm font-medium uppercase tracking-wide">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══ AREAS WE SERVE ════════════════════════════════════════════ */}
+      <section className="bg-slate-50 py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+              Areas We Serve Across the GTA
+            </h2>
+            <p className="text-gray-500 text-base max-w-xl mx-auto">
+              Licensed local roofers available in all of these communities — click your city for local roofing information.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {locations.map((city) => (
+              <Link
+                key={city.slug}
+                href={`/locations/${city.slug}`}
+                className="inline-flex items-center px-5 py-2.5 rounded-full border border-gray-200 bg-white text-gray-700 text-sm font-medium hover:border-[#F97316]/50 hover:text-[#F97316] hover:bg-[#F97316]/5 transition-all shadow-sm"
+              >
+                {city.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ FAQ ═══════════════════════════════════════════════════════ */}
+      <section className="bg-white py-20 px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-500 text-base max-w-xl mx-auto">
+              Answers to the questions GTA homeowners ask us most often.
+            </p>
+          </div>
+          <div className="space-y-3">
+            {homepageFaq.map(({ q, a }) => (
+              <details
+                key={q}
+                className="group bg-slate-50 border border-gray-100 rounded-2xl overflow-hidden"
+              >
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-semibold text-[#0F172A] text-base hover:text-[#F97316] transition-colors">
+                  {q}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 text-[#F97316] shrink-0 transition-transform duration-200 group-open:rotate-180"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+                  {a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ QUOTE FORM ════════════════════════════════════════════════ */}
+      <section id="quote" className="bg-white py-20 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-3 tracking-tight">
+              Request Your Free Quote
+            </h2>
+            <p className="text-gray-500 text-base max-w-lg mx-auto">
+              Fill out the form below and a local roofing expert will be in touch
+              within a few hours — no pressure, no obligation.
+            </p>
+          </div>
+          <QuoteForm />
+        </div>
+      </section>
+    </>
   );
 }
