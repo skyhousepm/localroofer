@@ -23,10 +23,10 @@ export default function Footer() {
               Connecting Toronto &amp; GTA homeowners with trusted, licensed local roofing contractors.
             </p>
             <a
-              href="tel:+14165550100"
+              href="tel:+14163002345"
               className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#F97316] transition-colors"
             >
-              (416) 555-0100
+              416 300-2345
             </a>
           </div>
 
@@ -52,25 +52,59 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Top Contractors */}
+          {/* Top Contractors — or, until the network is live, homeowner links */}
           <div>
-            <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Top Roofers</h4>
+            <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">
+              {topContractors.length > 0 ? "Top Roofers" : "For Homeowners"}
+            </h4>
             <ul className="space-y-2.5 text-sm">
-              {topContractors.map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/roofers/${c.slug}`}
-                    className="hover:text-[#F97316] transition-colors"
-                  >
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
-              <li className="pt-1 border-t border-white/10 mt-2">
-                <Link href="/find" className="hover:text-[#F97316] transition-colors font-medium text-white/80">
-                  All contractors →
-                </Link>
-              </li>
+              {topContractors.length > 0 ? (
+                <>
+                  {topContractors.map((c) => (
+                    <li key={c.slug}>
+                      <Link
+                        href={`/roofers/${c.slug}`}
+                        className="hover:text-[#F97316] transition-colors"
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                  <li className="pt-1 border-t border-white/10 mt-2">
+                    <Link href="/find" className="hover:text-[#F97316] transition-colors font-medium text-white/80">
+                      All contractors →
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link href="/#quote" className="hover:text-[#F97316] transition-colors">
+                      Get a Free Quote
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/find" className="hover:text-[#F97316] transition-colors">
+                      Find a Roofer
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#how-it-works" className="hover:text-[#F97316] transition-colors">
+                      How It Works
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#faq" className="hover:text-[#F97316] transition-colors">
+                      FAQ
+                    </Link>
+                  </li>
+                  <li className="pt-1 border-t border-white/10 mt-2">
+                    <Link href="/partners" className="hover:text-[#F97316] transition-colors font-medium text-white/80">
+                      Partner With Us →
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
 
@@ -112,8 +146,8 @@ export default function Footer() {
             <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Contact</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="tel:+14165550100" className="hover:text-[#F97316] transition-colors">
-                  (416) 555-0100
+                <a href="tel:+14163002345" className="hover:text-[#F97316] transition-colors">
+                  416 300-2345
                 </a>
               </li>
               <li>

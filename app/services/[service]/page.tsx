@@ -54,7 +54,7 @@ const trustBadges = [
   {
     icon: ShieldCheck,
     title: "Licensed & Insured",
-    desc: "Every contractor in our network holds a valid Ontario licence and full liability coverage.",
+    desc: "We only refer roofers who hold a valid Ontario contractor licence and carry liability coverage.",
   },
   {
     icon: BadgeDollarSign,
@@ -306,7 +306,7 @@ export default function ServicePage({
                   GTA Contractors Offering {service.name}
                 </h2>
                 <p className="text-slate-400 text-sm">
-                  Verified, rated contractors — sorted by homeowner rating.
+                  Partner contractors offering this service across the GTA.
                 </p>
               </div>
               <Link

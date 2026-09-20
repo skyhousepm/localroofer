@@ -108,7 +108,7 @@ export const locations: CityData[] = [
     slug: "markham",
     name: "Markham",
     description:
-      "Markham's mix of established communities and newer builds demands consistent, high-quality roofing. LocalRoofer.ca connects Markham homeowners with vetted local contractors for everything from minor repairs to full replacements — with materials and workmanship backed by warranty.",
+      "Markham's mix of established communities and newer builds demands consistent, high-quality roofing. LocalRoofer.ca connects Markham homeowners with licensed local contractors for everything from minor repairs to full replacements — with materials and workmanship backed by warranty.",
     serviceNote:
       "Serving Unionville, Cornell, Milliken, Greensborough, and all Markham communities.",
     commonIssues: [
@@ -318,7 +318,7 @@ export const locations: CityData[] = [
     slug: "oshawa",
     name: "Oshawa",
     description:
-      "Oshawa homeowners have access to a wide range of housing — from century homes with aging roofs to modern builds that need maintenance. LocalRoofer.ca connects Oshawa residents with vetted local roofing contractors offering honest quotes, quality materials, and dependable service.",
+      "Oshawa homeowners have access to a wide range of housing — from century homes with aging roofs to modern builds that need maintenance. LocalRoofer.ca connects Oshawa residents with licensed local roofing contractors offering honest quotes, quality materials, and dependable service.",
     serviceNote:
       "Serving Lakeview, Pinecrest, Kedron, McLaughlin, and all Oshawa communities.",
     commonIssues: [

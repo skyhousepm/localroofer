@@ -23,17 +23,11 @@ const jsonLd = {
   description:
     "LocalRoofer.ca connects Toronto and Greater Toronto Area homeowners with trusted, licensed local roofing contractors for roof repair, replacement, inspection, and emergency service.",
   url: "https://www.localroofer.ca",
-  telephone: "+14165550100",
+  telephone: "+14163002345",
   email: "info@localroofer.ca",
   image: "https://www.localroofer.ca/og-image.jpg",
   priceRange: "$$",
   openingHours: "Mo-Fr 07:00-18:00",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Toronto",
-    addressRegion: "ON",
-    addressCountry: "CA",
-  },
   areaServed: locations.map((city) => ({
     "@type": "City",
     name: city.name,
@@ -92,7 +86,7 @@ const trustBadges = [
   {
     icon: ShieldCheck,
     title: "Licensed & Insured",
-    desc: "Every roofer in our network holds a valid Ontario contractor licence and full liability coverage.",
+    desc: "We only refer roofers who hold a valid Ontario contractor licence and carry liability coverage.",
   },
   {
     icon: BadgeDollarSign,
@@ -111,20 +105,20 @@ const howItWorksSteps = [
   {
     number: "1",
     icon: Search,
-    title: "Search & Compare",
-    desc: "Browse verified, rated contractors in your city. Filter by service type, roof type, and location to find the right fit.",
+    title: "Tell Us About Your Roof",
+    desc: "Fill out the quote form with your city, roof type, and what you need done. It takes about a minute and costs nothing.",
   },
   {
     number: "2",
     icon: Star,
-    title: "Read Real Reviews",
-    desc: "Every contractor profile includes real homeowner reviews, ratings out of 10, and verified credentials — so you can choose with confidence.",
+    title: "We Match You Locally",
+    desc: "We connect you with a licensed roofing contractor who works in your city and handles the kind of job you described.",
   },
   {
     number: "3",
     icon: CheckCircle2,
-    title: "Get a Free Quote",
-    desc: "Contact your chosen contractor directly or fill out our quick quote form — expect a response within hours, no pressure, no obligation.",
+    title: "Get Your Free Quote",
+    desc: "The roofer contacts you directly to arrange an estimate — expect a response within hours, no pressure, no obligation.",
   },
 ];
 
@@ -147,12 +141,14 @@ const roofTypes = [
   },
 ];
 
-/* ── Homepage stats ───────────────────────────────────────────────── */
+/* ── Homepage stats ───────────────────────────────────────────────────
+   Derived from real site data only. Do not add contractor counts, review
+   totals, or average ratings here until they come from real listings. */
 const stats = [
-  { value: "6", label: "Verified Contractors" },
-  { value: "603+", label: "Homeowner Reviews" },
-  { value: "15", label: "GTA Cities Served" },
-  { value: "9.4/10", label: "Average Rating" },
+  { value: `${locations.length}`, label: "GTA Cities Covered" },
+  { value: `${services.length}`, label: "Roofing Services" },
+  { value: "Free", label: "Quote Requests" },
+  { value: "No Fee", label: "To Homeowners" },
 ];
 
 /* ── Homepage FAQ ─────────────────────────────────────────────────── */
@@ -217,8 +213,8 @@ export default function HomePage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Browse verified, rated roofing contractors. Compare reviews, check credentials,
-            and get a free quote — all in one place.
+            Tell us about your roof and we&apos;ll connect you with a licensed local
+            roofing contractor. Free quotes, no obligation.
           </p>
 
           {/* Search box */}
@@ -234,10 +230,10 @@ export default function HomePage() {
             </Link>
             <span className="text-white/20 hidden sm:block">·</span>
             <Link
-              href="/find"
+              href="/partners"
               className="text-orange-400 hover:text-orange-300 text-sm font-medium transition-colors"
             >
-              Browse all contractors →
+              Are you a roofer? Partner with us →
             </Link>
           </div>
         </div>
@@ -263,49 +259,86 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══ FEATURED CONTRACTORS ══════════════════════════════════════ */}
+      {/* ══ FEATURED CONTRACTORS / NETWORK ════════════════════════════ */}
       <section className="bg-[#0F172A] py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
-                Top-Rated GTA Roofers
+          {contractors.length > 0 ? (
+            <>
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+                <div>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+                    Our Partner Roofers
+                  </h2>
+                  <p className="text-slate-400 text-base max-w-xl">
+                    Licensed roofing contractors in the LocalRoofer.ca network.
+                  </p>
+                </div>
+                <Link
+                  href="/find"
+                  className="text-orange-400 hover:text-orange-300 text-sm font-semibold transition-colors whitespace-nowrap"
+                >
+                  See all contractors →
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                {[...contractors]
+                  .sort((a, b) => b.rating - a.rating)
+                  .slice(0, 3)
+                  .map((c) => (
+                    <ContractorCard key={c.slug} contractor={c} />
+                  ))}
+              </div>
+              <div className="text-center mt-8">
+                <Link
+                  href="/find"
+                  className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
+                >
+                  Browse All {contractors.length}{" "}
+                  {contractors.length === 1 ? "Contractor" : "Contractors"}
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="w-14 h-14 rounded-2xl bg-[#F97316]/10 flex items-center justify-center mx-auto mb-6">
+                <Users className="w-7 h-7 text-[#F97316]" strokeWidth={1.8} />
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+                We&apos;re Building Our Roofer Network
               </h2>
-              <p className="text-slate-400 text-base max-w-xl">
-                Verified contractors with the highest ratings from real homeowner reviews.
+              <p className="text-slate-400 text-base leading-relaxed mb-8">
+                LocalRoofer.ca is onboarding licensed roofing contractors across Toronto
+                and the GTA. Homeowners can request a quote today and we&apos;ll connect
+                you with a local roofer directly — contractor profiles will appear here as
+                our network grows.
               </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  href="#quote"
+                  className="inline-flex items-center justify-center gap-2 bg-[#F97316] hover:bg-orange-600 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors"
+                >
+                  Get a Free Quote
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/partners"
+                  className="inline-flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
+                >
+                  I&apos;m a Roofer — Join the Network
+                </Link>
+              </div>
             </div>
-            <Link
-              href="/find"
-              className="text-orange-400 hover:text-orange-300 text-sm font-semibold transition-colors whitespace-nowrap"
-            >
-              See all contractors →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {[...contractors]
-              .sort((a, b) => b.rating - a.rating)
-              .slice(0, 3)
-              .map((c) => (
-                <ContractorCard key={c.slug} contractor={c} />
-              ))}
-          </div>
-          <div className="text-center mt-8">
-            <Link
-              href="/find"
-              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
-            >
-              Browse All {contractors.length} Contractors
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          </div>
+          )}
         </div>
       </section>
 
       {/* ══ HOW IT WORKS ══════════════════════════════════════════════ */}
-      <section className="bg-white py-20 px-4">
+      <section id="how-it-works" className="bg-white py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
@@ -379,7 +412,7 @@ export default function HomePage() {
               Roof Types We Service
             </h2>
             <p className="text-gray-500 text-base max-w-xl mx-auto">
-              Our contractor network covers every major residential roofing system used across the GTA.
+              We handle quote requests for every major residential roofing system used across the GTA.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -447,7 +480,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ FAQ ═══════════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 px-4">
+      <section id="faq" className="bg-white py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">

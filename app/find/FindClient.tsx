@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, SlidersHorizontal, X } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Hammer, Search, SlidersHorizontal, X } from "lucide-react";
 import type { Contractor } from "@/lib/contractors";
 import ContractorCard from "@/components/ContractorCard";
 
@@ -65,6 +66,40 @@ export default function FindClient({
     setService("");
     setCity("");
     setRoofType("");
+  }
+
+  // No contractors listed yet — show the matching path instead of an empty grid.
+  if (contractors.length === 0) {
+    return (
+      <div className="bg-navy-800 border border-white/10 rounded-xl px-6 py-14 text-center">
+        <div className="w-14 h-14 rounded-full bg-orange-500/10 flex items-center justify-center mx-auto mb-5">
+          <Hammer size={26} className="text-orange-500" />
+        </div>
+        <h2 className="text-white font-semibold text-2xl mb-3">
+          Contractor listings are coming soon
+        </h2>
+        <p className="text-slate-400 text-base leading-relaxed max-w-xl mx-auto mb-8">
+          We&apos;re onboarding licensed roofing contractors across Toronto and the GTA
+          right now. In the meantime, tell us about your roof and we&apos;ll connect you
+          with a local roofer directly — free, and with no obligation.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link
+            href="/#quote"
+            className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg px-6 py-3 transition-colors"
+          >
+            Get a Free Quote
+            <ArrowRight size={16} />
+          </Link>
+          <Link
+            href="/partners"
+            className="inline-flex items-center justify-center border border-white/15 hover:border-white/30 text-slate-300 hover:text-white font-medium rounded-lg px-6 py-3 transition-colors"
+          >
+            I&apos;m a roofer — list my business
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return (

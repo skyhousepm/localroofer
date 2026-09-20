@@ -32,7 +32,7 @@ const trustBadges = [
   {
     icon: ShieldCheck,
     title: "Licensed & Insured",
-    desc: "Every contractor in our network holds a valid Ontario licence and full liability coverage.",
+    desc: "We only refer roofers who hold a valid Ontario contractor licence and carry liability coverage.",
   },
   {
     icon: BadgeDollarSign,
@@ -281,7 +281,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
             Also Serving Near {city.name}
           </h2>
           <p className="text-gray-500 text-sm mb-7">
-            Our contractor network covers these nearby communities as well.
+            We take quote requests from these nearby communities as well.
           </p>
           <div className="flex flex-wrap gap-3">
             {city.nearbyAreas.map((area) => (
@@ -304,10 +304,10 @@ export default function CityPage({ params }: { params: { city: string } }) {
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight mb-2">
-                  Top-Rated Roofers in {city.name}
+                  Roofers Serving {city.name}
                 </h2>
                 <p className="text-gray-500 text-sm">
-                  Verified contractors serving {city.name} — sorted by rating.
+                  Partner contractors covering {city.name} and the surrounding area.
                 </p>
               </div>
               <Link

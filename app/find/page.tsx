@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight, ShieldCheck, Star, Users } from "lucide-react";
-import { contractors } from "@/lib/contractors";
+import { ChevronRight, ClipboardCheck, ShieldCheck, Star, Users } from "lucide-react";
+import { averageRating, contractors, totalReviewCount } from "@/lib/contractors";
 import { locations } from "@/lib/locations";
 import FindClient from "./FindClient";
 
 export const metadata: Metadata = {
   title: "Find a Roofer in Toronto & the GTA",
   description:
-    "Browse verified, licensed roofing contractors across Toronto and the Greater Toronto Area. Compare ratings, reviews, and services to find the right roofer for your home.",
+    "Get matched with a licensed local roofing contractor anywhere in Toronto and the Greater Toronto Area. Tell us about your roof and we'll connect you with the right roofer.",
   alternates: { canonical: "https://www.localroofer.ca/find" },
 };
 
@@ -20,11 +20,10 @@ export default function FindPage({
   // All unique cities from contractor service areas for the filter dropdown
   const allCities = locations.map((l) => l.name);
 
-  // Stats
-  const totalReviews = contractors.reduce((sum, c) => sum + c.reviewCount, 0);
-  const avgRating = (
-    contractors.reduce((sum, c) => sum + c.rating, 0) / contractors.length
-  ).toFixed(1);
+  // Stats — null / zero until real contractors are listed
+  const totalReviews = totalReviewCount();
+  const avgRating = averageRating();
+  const listingsLive = contractors.length > 0;
 
   return (
     <div className="min-h-screen bg-navy">
@@ -46,36 +45,58 @@ export default function FindPage({
               <span className="text-orange-500">Toronto & the GTA</span>
             </h1>
             <p className="text-slate-400 text-lg leading-relaxed mb-8">
-              Browse verified, licensed roofing contractors. Compare ratings and reviews to
-              find the right roofer for your home.
+              {listingsLive
+                ? "Browse our partner roofing contractors and compare the services they offer across the GTA."
+                : "Tell us about your roof and we'll connect you with a licensed local roofing contractor in your city — free, and with no obligation."}
             </p>
 
             {/* Trust row */}
             <div className="flex flex-wrap gap-6">
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
-                  <Users size={15} className="text-orange-500" />
-                </div>
-                <span>
-                  <strong className="text-white">{contractors.length}</strong> vetted contractors
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
-                  <Star size={15} className="text-orange-500" />
-                </div>
-                <span>
-                  <strong className="text-white">{avgRating}/10</strong> avg rating · {totalReviews}+ reviews
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-300 text-sm">
-                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
-                  <ShieldCheck size={15} className="text-orange-500" />
-                </div>
-                <span>
-                  <strong className="text-white">100%</strong> licensed & insured
-                </span>
-              </div>
+              {listingsLive ? (
+                <>
+                  <div className="flex items-center gap-2 text-slate-300 text-sm">
+                    <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                      <Users size={15} className="text-orange-500" />
+                    </div>
+                    <span>
+                      <strong className="text-white">{contractors.length}</strong>{" "}
+                      {contractors.length === 1 ? "partner contractor" : "partner contractors"}
+                    </span>
+                  </div>
+                  {avgRating !== null && totalReviews > 0 && (
+                    <div className="flex items-center gap-2 text-slate-300 text-sm">
+                      <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                        <Star size={15} className="text-orange-500" />
+                      </div>
+                      <span>
+                        <strong className="text-white">{avgRating}/10</strong> avg rating ·{" "}
+                        {totalReviews} {totalReviews === 1 ? "review" : "reviews"}
+                      </span>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2 text-slate-300 text-sm">
+                    <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                      <ClipboardCheck size={15} className="text-orange-500" />
+                    </div>
+                    <span>Free quote request — takes about a minute</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300 text-sm">
+                    <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                      <ShieldCheck size={15} className="text-orange-500" />
+                    </div>
+                    <span>No obligation, no pressure</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300 text-sm">
+                    <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                      <Users size={15} className="text-orange-500" />
+                    </div>
+                    <span>Serving all 15 GTA cities</span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

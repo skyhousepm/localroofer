@@ -108,11 +108,11 @@ export default function Header() {
           {/* Right side: phone + hamburger */}
           <div className="flex items-center gap-3">
             <a
-              href="tel:+14165550100"
+              href="tel:+14163002345"
               className="flex items-center gap-2 text-white font-semibold text-sm hover:text-[#F97316] transition-colors"
             >
               <Phone className="w-4 h-4 text-[#F97316]" />
-              <span className="hidden sm:inline">(416) 555-0100</span>
+              <span className="hidden sm:inline">416 300-2345</span>
             </a>
 
             {/* Hamburger — mobile only */}
@@ -222,11 +222,11 @@ export default function Header() {
 
           {/* Phone */}
           <a
-            href="tel:+14165550100"
+            href="tel:+14163002345"
             className="flex items-center gap-2 mt-4 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
           >
             <Phone size={15} className="text-[#F97316]" />
-            (416) 555-0100
+            416 300-2345
           </a>
 
         </div>

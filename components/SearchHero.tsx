@@ -93,7 +93,7 @@ export default function SearchHero() {
       </div>
 
       <p className="text-center text-white/40 text-xs mt-3">
-        6 verified GTA contractors · Rated &amp; reviewed by homeowners
+        Serving Toronto &amp; the GTA · Free quotes, no obligation
       </p>
     </div>
   );
