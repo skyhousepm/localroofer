@@ -1,12 +1,11 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
+import { FROM_ADDRESS } from "@/lib/email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const PARTNER_RECIPIENT = "ansik@skyhouse.ca";
-// TODO: switch to "LocalRoofer.ca <noreply@localroofer.ca>" once domain is verified in Resend
-const FROM_ADDRESS = "LocalRoofer.ca <onboarding@resend.dev>";
 
 interface PartnerPayload {
   name: string;
@@ -191,13 +190,15 @@ export async function POST(req: NextRequest) {
       timeStyle: "short",
     });
 
-    await resend.emails.send({
+    // Resend reports failures in the return value rather than throwing
+    const { error } = await resend.emails.send({
       from: FROM_ADDRESS,
       to: [PARTNER_RECIPIENT],
       replyTo: email,
       subject: `[Partner Inquiry] ${company} — ${serviceAreas}`,
       html: buildPartnerEmailHtml(escapeFields(partner), timestamp),
     });
+    if (error) throw new Error(`Resend: ${error.message}`);
 
     return NextResponse.json({ success: true });
   } catch (err) {

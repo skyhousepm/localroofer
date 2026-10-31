@@ -1,12 +1,11 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
+import { BUSINESS_PHONE_DISPLAY, BUSINESS_PHONE_TEL, CAN_EMAIL_CUSTOMERS, FROM_ADDRESS } from "@/lib/email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const LEAD_RECIPIENT = "ansik@skyhouse.ca";
-// TODO: switch to "LocalRoofer.ca <noreply@localroofer.ca>" once localroofer.ca is verified in Resend
-const FROM_ADDRESS = "LocalRoofer.ca <onboarding@resend.dev>";
 
 /* ── Type ──────────────────────────────────────────────────────────── */
 interface LeadPayload {
@@ -215,6 +214,78 @@ function buildEmailHtml(lead: LeadPayload, timestamp: string): string {
   `.trim();
 }
 
+/** Confirmation sent to the homeowner after they submit the quote form. */
+function buildConfirmationHtml(lead: LeadPayload): string {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We received your roofing request</title>
+</head>
+<body style="margin:0;padding:0;background:#F8FAFC;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#F8FAFC;padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
+
+          <!-- Header -->
+          <tr>
+            <td style="background:#0F172A;border-radius:12px 12px 0 0;padding:28px 32px;">
+              <p style="margin:0;font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.3px;">
+                Local<span style="color:#F97316;">Roofer</span><span style="color:rgba(255,255,255,0.4)">.ca</span>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="background:#fff;border-radius:0 0 12px 12px;padding:32px;">
+              <h2 style="margin:0 0 16px;font-size:20px;font-weight:700;color:#0F172A;">
+                Thanks, ${lead.name.split(" ")[0]} — we got your request
+              </h2>
+              <p style="margin:0 0 24px;font-size:15px;color:#334155;line-height:1.6;">
+                We&rsquo;ve received your roofing quote request and will follow up shortly to
+                connect you with a local contractor. There&rsquo;s no cost and no obligation.
+              </p>
+
+              <!-- Summary -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#F8FAFC;border-radius:8px;margin-bottom:24px;">
+                <tr><td style="padding:16px 20px;font-size:14px;color:#334155;line-height:1.8;">
+                  <strong style="color:#0F172A;">Service:</strong> ${formatJobType(lead.jobType)}<br>
+                  <strong style="color:#0F172A;">Roof type:</strong> ${formatRoofType(lead.roofType)}<br>
+                  <strong style="color:#0F172A;">Location:</strong> ${lead.address}, ${formatCity(lead.city)}<br>
+                  <strong style="color:#0F172A;">Timing:</strong> ${formatUrgency(lead.urgency)}
+                </td></tr>
+              </table>
+
+              <p style="margin:0;font-size:15px;color:#334155;line-height:1.6;">
+                Roof leaking right now? Call us at
+                <a href="tel:${BUSINESS_PHONE_TEL}" style="color:#F97316;font-weight:600;text-decoration:none;">${BUSINESS_PHONE_DISPLAY}</a>.
+                To update your request, just reply to this email.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:20px 0 0;text-align:center;">
+              <p style="margin:0;font-size:12px;color:#94A3B8;">
+                You&rsquo;re receiving this because you requested a quote on LocalRoofer.ca.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+}
+
 /* ── Route handler ─────────────────────────────────────────────────── */
 export async function POST(req: NextRequest) {
   try {
@@ -256,13 +327,29 @@ export async function POST(req: NextRequest) {
 
     const subject = `[${formatUrgency(urgency)}] New ${formatJobType(jobType)} Lead — ${formatCity(city)}`;
 
-    await resend.emails.send({
+    const safeLead = escapeFields(lead);
+
+    // Resend reports failures in the return value rather than throwing
+    const { error } = await resend.emails.send({
       from: FROM_ADDRESS,
       to: [LEAD_RECIPIENT],
       replyTo: email,
       subject,
-      html: buildEmailHtml(escapeFields(lead), timestamp),
+      html: buildEmailHtml(safeLead, timestamp),
     });
+    if (error) throw new Error(`Resend: ${error.message}`);
+
+    // The lead is already safe in our inbox, so a failed confirmation is logged, not surfaced
+    if (CAN_EMAIL_CUSTOMERS) {
+      const { error: confirmError } = await resend.emails.send({
+        from: FROM_ADDRESS,
+        to: [email],
+        replyTo: LEAD_RECIPIENT,
+        subject: "We received your roofing quote request",
+        html: buildConfirmationHtml(safeLead),
+      });
+      if (confirmError) console.error("[submit-lead] confirmation:", confirmError.message);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {

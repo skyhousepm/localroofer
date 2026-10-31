@@ -2,6 +2,7 @@
 
 import { useState, useRef, FormEvent } from "react";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 const fieldCls =
   "w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 " +
@@ -82,6 +83,7 @@ export default function PartnerForm() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      track("Partner Inquiry Submitted", { licensed: fields.licensed });
       setStatus("success");
       setFields(empty);
     } catch (err) {

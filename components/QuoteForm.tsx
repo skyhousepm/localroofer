@@ -2,6 +2,7 @@
 
 import { useState, useRef, FormEvent } from "react";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 /* ── GTA city list ────────────────────────────────────────────────── */
 const gtaCities = [
@@ -122,6 +123,7 @@ export default function QuoteForm({
         throw new Error(data.error ?? "Something went wrong.");
       }
 
+      track("Quote Submitted", { city: fields.city, jobType: fields.jobType, urgency: fields.urgency });
       setStatus("success");
       setFields(emptyFields);
     } catch (err) {
