@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useRef, FormEvent } from "react";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 /* ── GTA city list ────────────────────────────────────────────────── */
@@ -88,6 +88,8 @@ export default function QuoteForm({
   });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  // When the form first rendered — the API rejects submissions faster than a person could type
+  const startedAt = useRef(Date.now());
 
   const isLoading = status === "loading";
 
@@ -99,6 +101,7 @@ export default function QuoteForm({
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const website = new FormData(e.currentTarget).get("website");
     setStatus("loading");
     setErrorMsg("");
 
@@ -106,7 +109,11 @@ export default function QuoteForm({
       const res = await fetch("/api/submit-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({
+          ...fields,
+          website,
+          elapsedMs: Date.now() - startedAt.current,
+        }),
       });
 
       const data = await res.json();
@@ -152,7 +159,7 @@ export default function QuoteForm({
   /* ── Form ───────────────────────────────────────────────────────── */
   return (
     <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/80 border border-gray-100 p-8 sm:p-10">
-      <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+      <form onSubmit={handleSubmit} className="relative space-y-5" noValidate>
 
         {/* Full Name */}
         <div>
@@ -347,6 +354,11 @@ export default function QuoteForm({
           No spam. No obligation.{" "}
           <span className="font-medium text-gray-500">We typically respond within a few hours.</span>
         </p>
+        {/* Honeypot — hidden from people, bots tend to fill it in */}
+        <div aria-hidden className="absolute -left-[9999px] w-px h-px overflow-hidden">
+          <label htmlFor="quote-website">Website</label>
+          <input id="quote-website" name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </div>
       </form>
     </div>
   );

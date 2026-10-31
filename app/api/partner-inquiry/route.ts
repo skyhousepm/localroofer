@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
+import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -162,8 +163,26 @@ export async function POST(req: NextRequest) {
     const { name, company, phone, email, serviceAreas, yearsInBusiness, licensed, message } =
       body as PartnerPayload;
 
+    // Bots get a fake success so they don't retry with a smarter payload
+    if (looksLikeBot(body)) {
+      return NextResponse.json({ success: true });
+    }
+
+    if (isRateLimited(req, "partner")) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again in a few minutes." },
+        { status: 429 }
+      );
+    }
+
     if (!name || !company || !phone || !email || !serviceAreas || !yearsInBusiness) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+    }
+
+    const partner: PartnerPayload = { name, company, phone, email, serviceAreas, yearsInBusiness, licensed, message };
+    const invalid = validateFields({ ...partner });
+    if (invalid) {
+      return NextResponse.json({ error: invalid }, { status: 400 });
     }
 
     const timestamp = new Date().toLocaleString("en-CA", {
@@ -177,10 +196,7 @@ export async function POST(req: NextRequest) {
       to: [PARTNER_RECIPIENT],
       replyTo: email,
       subject: `[Partner Inquiry] ${company} — ${serviceAreas}`,
-      html: buildPartnerEmailHtml(
-        { name, company, phone, email, serviceAreas, yearsInBusiness, licensed, message },
-        timestamp
-      ),
+      html: buildPartnerEmailHtml(escapeFields(partner), timestamp),
     });
 
     return NextResponse.json({ success: true });

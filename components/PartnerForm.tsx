@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useRef, FormEvent } from "react";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 const fieldCls =
@@ -53,6 +53,8 @@ export default function PartnerForm() {
   const [fields, setFields] = useState<Fields>(empty);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  // When the form first rendered — the API rejects submissions faster than a person could type
+  const startedAt = useRef(Date.now());
 
   const isLoading = status === "loading";
 
@@ -64,6 +66,7 @@ export default function PartnerForm() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const website = new FormData(e.currentTarget).get("website");
     setStatus("loading");
     setErrorMsg("");
 
@@ -71,7 +74,11 @@ export default function PartnerForm() {
       const res = await fetch("/api/partner-inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({
+          ...fields,
+          website,
+          elapsedMs: Date.now() - startedAt.current,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
@@ -108,7 +115,7 @@ export default function PartnerForm() {
 
   return (
     <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/80 border border-gray-100 p-8 sm:p-10">
-      <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+      <form onSubmit={handleSubmit} className="relative space-y-5" noValidate>
 
         {/* Name + Company */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -213,6 +220,11 @@ export default function PartnerForm() {
           We review all applications within{" "}
           <span className="font-medium text-gray-500">1–2 business days</span>.
         </p>
+        {/* Honeypot — hidden from people, bots tend to fill it in */}
+        <div aria-hidden className="absolute -left-[9999px] w-px h-px overflow-hidden">
+          <label htmlFor="partner-website">Website</label>
+          <input id="partner-website" name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </div>
       </form>
     </div>
   );

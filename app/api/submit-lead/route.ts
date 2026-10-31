@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
+import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -221,12 +222,30 @@ export async function POST(req: NextRequest) {
     const { name, phone, email, address, city, roofType, jobType, urgency, message } =
       body as LeadPayload;
 
+    // Bots get a fake success so they don't retry with a smarter payload
+    if (looksLikeBot(body)) {
+      return NextResponse.json({ success: true });
+    }
+
+    if (isRateLimited(req, "lead")) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again in a few minutes." },
+        { status: 429 }
+      );
+    }
+
     // Basic server-side validation
     if (!name || !phone || !email || !address || !city || !roofType || !jobType || !urgency) {
       return NextResponse.json(
         { error: "Missing required fields." },
         { status: 400 }
       );
+    }
+
+    const lead: LeadPayload = { name, phone, email, address, city, roofType, jobType, urgency, message };
+    const invalid = validateFields({ ...lead });
+    if (invalid) {
+      return NextResponse.json({ error: invalid }, { status: 400 });
     }
 
     const timestamp = new Date().toLocaleString("en-CA", {
@@ -242,7 +261,7 @@ export async function POST(req: NextRequest) {
       to: [LEAD_RECIPIENT],
       replyTo: email,
       subject,
-      html: buildEmailHtml({ name, phone, email, address, city, roofType, jobType, urgency, message }, timestamp),
+      html: buildEmailHtml(escapeFields(lead), timestamp),
     });
 
     return NextResponse.json({ success: true });
