@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
+import { appendRow, sheetTimestamp } from "@/lib/sheets";
 import { BUSINESS_PHONE_DISPLAY, BUSINESS_PHONE_TEL, CAN_EMAIL_CUSTOMERS, FROM_ADDRESS } from "@/lib/email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -329,15 +330,42 @@ export async function POST(req: NextRequest) {
 
     const safeLead = escapeFields(lead);
 
-    // Resend reports failures in the return value rather than throwing
-    const { error } = await resend.emails.send({
-      from: FROM_ADDRESS,
-      to: [LEAD_RECIPIENT],
-      replyTo: email,
-      subject,
-      html: buildEmailHtml(safeLead, timestamp),
-    });
-    if (error) throw new Error(`Resend: ${error.message}`);
+    // Email and Sheet are independent records of the lead — run both, and
+    // only fail the request if neither one captured it.
+    const [mailResult, sheetResult] = await Promise.allSettled([
+      resend.emails
+        .send({
+          from: FROM_ADDRESS,
+          to: [LEAD_RECIPIENT],
+          replyTo: email,
+          subject,
+          html: buildEmailHtml(safeLead, timestamp),
+        })
+        // Resend reports failures in the return value rather than throwing
+        .then(({ error }) => {
+          if (error) throw new Error(`Resend: ${error.message}`);
+        }),
+      appendRow("Leads", [
+        sheetTimestamp(),
+        name,
+        phone,
+        email,
+        address,
+        formatCity(city),
+        formatRoofType(roofType),
+        formatJobType(jobType),
+        formatUrgency(urgency),
+        message ?? "",
+      ]),
+    ]);
+
+    if (mailResult.status === "rejected") console.error("[submit-lead] email:", mailResult.reason);
+    if (sheetResult.status === "rejected") console.error("[submit-lead] sheet:", sheetResult.reason);
+
+    const saved =
+      mailResult.status === "fulfilled" ||
+      (sheetResult.status === "fulfilled" && sheetResult.value);
+    if (!saved) throw new Error("Lead was not recorded by email or Sheets");
 
     // The lead is already safe in our inbox, so a failed confirmation is logged, not surfaced
     if (CAN_EMAIL_CUSTOMERS) {

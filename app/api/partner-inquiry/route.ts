@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
 import { FROM_ADDRESS } from "@/lib/email";
+import { appendRow, sheetTimestamp } from "@/lib/sheets";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -190,15 +191,40 @@ export async function POST(req: NextRequest) {
       timeStyle: "short",
     });
 
-    // Resend reports failures in the return value rather than throwing
-    const { error } = await resend.emails.send({
-      from: FROM_ADDRESS,
-      to: [PARTNER_RECIPIENT],
-      replyTo: email,
-      subject: `[Partner Inquiry] ${company} — ${serviceAreas}`,
-      html: buildPartnerEmailHtml(escapeFields(partner), timestamp),
-    });
-    if (error) throw new Error(`Resend: ${error.message}`);
+    // Email and Sheet are independent records — only fail if neither captured it
+    const [mailResult, sheetResult] = await Promise.allSettled([
+      resend.emails
+        .send({
+          from: FROM_ADDRESS,
+          to: [PARTNER_RECIPIENT],
+          replyTo: email,
+          subject: `[Partner Inquiry] ${company} — ${serviceAreas}`,
+          html: buildPartnerEmailHtml(escapeFields(partner), timestamp),
+        })
+        // Resend reports failures in the return value rather than throwing
+        .then(({ error }) => {
+          if (error) throw new Error(`Resend: ${error.message}`);
+        }),
+      appendRow("Partners", [
+        sheetTimestamp(),
+        name,
+        company,
+        phone,
+        email,
+        serviceAreas,
+        yearsInBusiness,
+        licensed === "yes" ? "Yes" : "Pending / Unsure",
+        message ?? "",
+      ]),
+    ]);
+
+    if (mailResult.status === "rejected") console.error("[partner-inquiry] email:", mailResult.reason);
+    if (sheetResult.status === "rejected") console.error("[partner-inquiry] sheet:", sheetResult.reason);
+
+    const saved =
+      mailResult.status === "fulfilled" ||
+      (sheetResult.status === "fulfilled" && sheetResult.value);
+    if (!saved) throw new Error("Inquiry was not recorded by email or Sheets");
 
     return NextResponse.json({ success: true });
   } catch (err) {
