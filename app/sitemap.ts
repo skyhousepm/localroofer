@@ -30,6 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const locationsIndex: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/locations`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+  ];
+
   const locationPages: MetadataRoute.Sitemap = locations.map((city) => ({
     url: `${BASE_URL}/locations/${city.slug}`,
     lastModified: now,
@@ -53,5 +62,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...core, ...servicePages, ...locationPages, ...contractorPages, ...partnerPage];
+  return [...core, ...servicePages, ...locationsIndex, ...locationPages, ...contractorPages, ...partnerPage];
 }

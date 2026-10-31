@@ -24,6 +24,7 @@ export async function generateMetadata({
   return {
     title: `Roofing Services in ${city.name}, ON | LocalRoofer.ca`,
     description: `Looking for a trusted roofer in ${city.name}? LocalRoofer.ca connects ${city.name} homeowners with licensed, insured local roofing contractors. Free estimates — call today.`,
+    alternates: { canonical: `https://www.localroofer.ca/locations/${city.slug}` },
   };
 }
 
@@ -80,7 +81,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <nav className="flex items-center justify-center gap-2 text-sm text-white/40 mb-6">
             <Link href="/" className="hover:text-white/70 transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/#quote" className="hover:text-white/70 transition-colors">Locations</Link>
+            <Link href="/locations" className="hover:text-white/70 transition-colors">Locations</Link>
             <span>/</span>
             <span className="text-white/60">{city.name}</span>
           </nav>
