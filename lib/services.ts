@@ -350,6 +350,270 @@ export const services: ServiceData[] = [
       },
     ],
   },
+  {
+    slug: "eavestroughs",
+    name: "Eavestroughs & Gutters",
+    tagline:
+      "Seamless eavestrough installation, repair, and cleaning that keeps water away from your roof, walls, and foundation.",
+    description: [
+      "Eavestroughs do more work than most homeowners realize. Every rainfall and spring thaw sends hundreds of litres of water off your roof, and your eavestroughs and downspouts are what carry it away from your fascia, siding, and foundation. When they're clogged, sagging, or leaking at the seams, that water ends up where it causes the most damage — rotting fascia boards, staining brick, flooding basements, and feeding ice dams along the eaves in winter.",
+      "LocalRoofer.ca connects GTA homeowners with local contractors who install seamless aluminum eavestroughs formed on-site to fit your home, repair leaking joints and sagging runs, re-pitch troughs that hold standing water, and add downspout extensions that discharge water well away from the foundation.",
+      "Because eavestroughs sit right at the roof edge, it's worth having them looked at whenever you re-roof. Replacing them at the same time avoids disturbing new shingles and drip edge later.",
+    ],
+    benefits: [
+      "Protects your foundation and basement from water infiltration",
+      "Prevents fascia, soffit, and siding rot",
+      "Seamless aluminum runs mean fewer joints that can leak",
+      "Gutter guards available to cut down on cleaning",
+      "Easy to coordinate with a roof replacement",
+    ],
+    icon: "CloudRain",
+    processSteps: [
+      {
+        title: "Assessment & Measurement",
+        desc: "A contractor checks your existing eavestroughs, downspouts, fascia, and drainage around the foundation, measures every run, and provides a written quote — at no charge.",
+      },
+      {
+        title: "Fascia Check & Prep",
+        desc: "Old troughs are removed and the fascia boards behind them are inspected. Any soft or rotted wood is replaced so the new eavestroughs have a solid base to fasten to.",
+      },
+      {
+        title: "Seamless Installation",
+        desc: "Seamless aluminum eavestroughs are formed on-site to the exact length of each run, hung with hidden hangers at the correct slope, and connected to properly sized downspouts.",
+      },
+      {
+        title: "Water Test & Clean-Up",
+        desc: "The crew runs water through the system to confirm it drains fully with no leaks or standing water, directs downspouts away from the foundation, and cleans up all debris.",
+      },
+    ],
+    warningSigns: [
+      "Water spilling over the edge of the eavestroughs during rain instead of flowing to the downspouts",
+      "Sagging sections or troughs pulling away from the fascia",
+      "Peeling paint, stains, or rot on the fascia boards behind the eavestroughs",
+      "Puddles, erosion, or a damp basement near the base of downspouts",
+      "Large icicles or ice buildup along the eavestroughs in winter",
+    ],
+    faq: [
+      {
+        q: "How much do new eavestroughs cost in the GTA?",
+        a: "Seamless aluminum eavestroughs typically cost around $8–$15 per linear foot installed, which puts most detached GTA homes in the $1,500–$3,500 range including downspouts. Two-storey homes, complex rooflines, fascia repairs, and gutter guards add to the price. You'll get a firm written quote before any work starts.",
+      },
+      {
+        q: "How often should eavestroughs be cleaned?",
+        a: "At least twice a year — once in late spring and once in late fall after the leaves have dropped. Homes surrounded by mature trees may need more frequent cleaning. Professional cleaning for a typical home usually costs $150–$350.",
+      },
+      {
+        q: "Are gutter guards worth it?",
+        a: "For homes with lots of trees nearby, guards can significantly reduce how often you need cleaning and help prevent clogs that cause overflow and ice buildup. They don't make eavestroughs maintenance-free — fine debris and shingle granules still collect — but quality guards are a good investment in leafy neighbourhoods.",
+      },
+      {
+        q: "Should I replace my eavestroughs when I replace my roof?",
+        a: "Often, yes. If your eavestroughs are more than 20 years old, sagging, or leaking, replacing them during a roof replacement is efficient: the fascia is exposed, the drip edge can be installed correctly over the new troughs, and you avoid disturbing new shingles later.",
+      },
+      {
+        q: "Why do my eavestroughs overflow even when they're clean?",
+        a: "Usually the slope is wrong, the downspouts are too small or too few for the roof area draining into them, or water is shooting past the trough on a steep roof section. A contractor can re-pitch the runs, add downspouts, or install larger troughs to fix it.",
+      },
+    ],
+  },
+  {
+    slug: "skylights",
+    name: "Skylight Repair & Replacement",
+    tagline:
+      "Stop skylight leaks for good — expert reflashing, repair, and replacement of fixed and venting skylights.",
+    description: [
+      "Skylights bring natural light deep into a home, but they're also one of the most common sources of roof leaks. Most skylight leaks aren't the glass at all — they come from flashing that has failed, seals that have dried out over Ontario's freeze-thaw cycles, or an installation that was never properly integrated with the roof.",
+      "LocalRoofer.ca connects GTA homeowners with local roofers who diagnose skylight leaks correctly, reflash existing units, and replace aging skylights with modern, energy-efficient models using manufacturer flashing kits designed for your roof type.",
+      "If your roof is due for replacement and your skylights are more than 15–20 years old, replacing them at the same time is almost always the smart move. The flashing has to be redone during a re-roof anyway, and putting an old skylight back into a new roof often leads to leaks within a few years.",
+    ],
+    benefits: [
+      "Ends recurring leaks at the source — usually the flashing",
+      "Modern units are far more energy-efficient than older skylights",
+      "Manufacturer flashing kits for a watertight seal",
+      "Venting and solar-powered options for kitchens and bathrooms",
+      "Easy to coordinate with a roof replacement",
+    ],
+    icon: "Sun",
+    processSteps: [
+      {
+        title: "Leak Diagnosis & Quote",
+        desc: "A roofer inspects the skylight from inside and out — glass, seals, frame, flashing, and the surrounding shingles — to pinpoint where water is getting in, then gives you a written quote to repair or replace.",
+      },
+      {
+        title: "Removal & Opening Prep",
+        desc: "Shingles around the skylight are carefully lifted, the old unit and flashing are removed, and the roof opening and curb are checked for rot and squared up for the new unit.",
+      },
+      {
+        title: "Installation & Flashing",
+        desc: "The skylight is installed with ice-and-water shield around the opening and the manufacturer's step-flashing kit woven into the shingles, so water is shed around the unit rather than relying on caulking.",
+      },
+      {
+        title: "Interior Finish & Test",
+        desc: "The crew confirms the installation is watertight, makes sure the interior shaft is sealed and finished, and cleans up inside and out.",
+      },
+    ],
+    warningSigns: [
+      "Water stains or drips on the ceiling or drywall around the skylight",
+      "Condensation or fogging between the panes of glass",
+      "Cracked glass, a cracked dome, or a damaged frame",
+      "Caulking or tar smeared around the skylight from past repair attempts",
+      "Drafts or noticeable heat loss through the skylight in winter",
+    ],
+    faq: [
+      {
+        q: "How much does skylight repair or replacement cost?",
+        a: "Reflashing or resealing an existing skylight typically costs $400–$1,000. Replacing a standard fixed or venting skylight usually runs $1,500–$4,000 per unit installed, depending on size, type, and interior finishing. Replacing a skylight during a roof replacement often costs less because the roof is already open.",
+      },
+      {
+        q: "Can a leaking skylight be repaired, or does it need replacing?",
+        a: "If the unit itself is in good shape and the leak is from the flashing or the surrounding shingles, reflashing is usually enough. If the glass seal has failed (fogging between the panes), the frame is damaged, or the skylight is near the end of its life, replacement is the better long-term fix.",
+      },
+      {
+        q: "Is it condensation or a leak?",
+        a: "Condensation shows up on cold days as water droplets on the inside of the glass and frame, especially in kitchens and bathrooms. A leak tends to appear during or after rain or snowmelt. A roofer can tell the difference — condensation is often a ventilation or humidity issue rather than a roofing problem.",
+      },
+      {
+        q: "Should I replace my skylights when I get a new roof?",
+        a: "If they're more than 15–20 years old, yes. The skylight flashing has to come off during a re-roof anyway, and reinstalling an aging unit into a new roof is a common cause of leaks shortly after replacement.",
+      },
+      {
+        q: "Can I remove a skylight I don't want anymore?",
+        a: "Yes. A roofer can remove the skylight, frame in the opening with new decking, and shingle over it to match the rest of the roof. You'll also need a drywall contractor to close up the ceiling inside.",
+      },
+    ],
+  },
+  {
+    slug: "attic-ventilation",
+    name: "Attic Ventilation & Insulation",
+    tagline:
+      "Balanced attic ventilation and proper insulation to prevent ice dams, extend shingle life, and cut energy bills.",
+    description: [
+      "Your attic has a bigger effect on your roof than most homeowners realize. When warm, moist air from the house leaks into a poorly ventilated attic, it heats the roof deck — melting snow that refreezes at the eaves as ice dams — and condenses on the cold underside of the roof, leading to mould, rot, and frost in winter. In summer, trapped heat bakes shingles from below and shortens their life.",
+      "LocalRoofer.ca connects GTA homeowners with local contractors who assess attic ventilation and insulation together: balancing intake vents at the soffits with exhaust vents at the ridge or roof, clearing blocked soffits, installing baffles, and air-sealing and topping up insulation so the roof deck stays cold and dry.",
+      "Many older GTA homes have far less attic insulation than today's standards, and ventilation that was never balanced in the first place. Fixing both is one of the most effective ways to stop recurring ice dams.",
+    ],
+    benefits: [
+      "Reduces or eliminates recurring ice dams",
+      "Prevents attic condensation, frost, and mould",
+      "Helps shingles reach their full expected lifespan",
+      "Lowers heating and cooling costs",
+      "Can be done on its own or alongside a roof replacement",
+    ],
+    icon: "Wind",
+    processSteps: [
+      {
+        title: "Attic Assessment",
+        desc: "A contractor inspects your attic for insulation depth, air leaks, blocked soffits, moisture, frost, and mould, and checks the existing intake and exhaust vents on the roof — then gives you a written quote.",
+      },
+      {
+        title: "Air Sealing",
+        desc: "Gaps around light fixtures, plumbing stacks, chimneys, and the attic hatch are sealed so warm, moist air from the house stops leaking into the attic.",
+      },
+      {
+        title: "Ventilation Upgrades",
+        desc: "Baffles are installed to keep soffit vents clear, and roof or ridge vents are added or replaced so cold outside air flows evenly from the eaves to the peak.",
+      },
+      {
+        title: "Insulation Top-Up",
+        desc: "Blown-in insulation is added to bring the attic up to a modern level, keeping it clear of the soffit baffles so ventilation still works.",
+      },
+    ],
+    warningSigns: [
+      "Ice dams and large icicles along the eaves every winter",
+      "Frost on the underside of the roof deck or nails in the attic in winter",
+      "Dark staining or mould on the attic sheathing",
+      "Upstairs rooms that are much hotter than the rest of the house in summer",
+      "Shingles that are curling or blistering well before the end of their expected life",
+    ],
+    faq: [
+      {
+        q: "How much does attic ventilation work cost?",
+        a: "Adding or replacing individual roof vents typically costs $300–$600 per vent installed. Converting to a ridge vent is most cost-effective during a roof replacement. Topping up attic insulation with blown-in material for a typical GTA home often runs $1,500–$3,500 depending on attic size and how much is needed.",
+      },
+      {
+        q: "How do I know if my attic is properly ventilated?",
+        a: "Signs of poor ventilation include frost or condensation in the attic in winter, mould on the sheathing, ice dams, and an attic that's extremely hot in summer. A contractor can check whether your intake and exhaust vents are balanced and whether insulation is blocking the soffits.",
+      },
+      {
+        q: "Can I have too much ventilation?",
+        a: "Balance matters more than quantity. Too much exhaust without enough intake can pull conditioned air out of the house, and mixing different exhaust types — like a ridge vent with box vents — can cause them to work against each other. A contractor will size intake and exhaust to match your attic.",
+      },
+      {
+        q: "Are there rebates for attic insulation in Ontario?",
+        a: "Ontario has offered rebates for attic insulation upgrades through utility and government energy-efficiency programs, but the programs and amounts change over time. Check what's currently available before you start — some programs require an energy assessment before the work is done.",
+      },
+      {
+        q: "Should I fix ventilation when I replace my roof?",
+        a: "It's the ideal time. With the old shingles off, adding a ridge vent, improving intake, and installing baffles is easier and less expensive than doing it later, and proper ventilation is often a condition of the shingle manufacturer's warranty.",
+      },
+    ],
+  },
+  {
+    slug: "chimney-flashing",
+    name: "Chimney Flashing Repair",
+    tagline:
+      "Stop chimney leaks with properly installed step and counter flashing — the most common leak point on GTA roofs.",
+    description: [
+      "Where a chimney passes through the roof is one of the most leak-prone spots on any house. The joint between brick and shingles is protected by metal flashing — step flashing woven into the shingles and counter flashing set into the mortar joints above it. Over time, mortar cracks, sealant dries out, and flashing pulls away, letting water run down the chimney into the attic, walls, and ceilings.",
+      "LocalRoofer.ca connects GTA homeowners with local roofers who repair and replace chimney flashing properly: removing old caulk-and-tar patches, installing new step and counter flashing cut into the brick, and adding a cricket behind wider chimneys so water and snow don't pool on the uphill side.",
+      "Chimney leaks are often mistaken for roof leaks or masonry problems. If the brick, crown, or cap also need work, your roofer can tell you, and you may need a mason for those repairs.",
+    ],
+    benefits: [
+      "Fixes the most common source of roof leaks",
+      "Replaces temporary caulking and tar with a permanent fix",
+      "Crickets prevent water and snow from pooling behind wide chimneys",
+      "Protects attic framing, insulation, and ceilings from water damage",
+      "Best done during a roof replacement for a seamless result",
+    ],
+    icon: "Flame",
+    processSteps: [
+      {
+        title: "Inspection & Quote",
+        desc: "A roofer inspects the chimney flashing, surrounding shingles, mortar joints, and the attic below to confirm where water is getting in, then gives you a written quote.",
+      },
+      {
+        title: "Remove Old Flashing",
+        desc: "Shingles around the chimney are lifted, and old flashing, caulking, and tar patches are removed down to clean brick and decking. Any rotted decking is replaced.",
+      },
+      {
+        title: "Install New Flashing",
+        desc: "Ice-and-water shield goes down around the chimney base, then new step flashing is woven into each shingle course and counter flashing is cut into the mortar joints and sealed. A cricket is added behind wider chimneys.",
+      },
+      {
+        title: "Seal, Test & Clean-Up",
+        desc: "The roofer checks every joint, reinstalls the shingles, confirms the chimney is watertight, and cleans up all debris.",
+      },
+    ],
+    warningSigns: [
+      "Water stains on the ceiling or walls near the chimney",
+      "Damp or stained wood around the chimney in the attic",
+      "Caulking or roofing tar smeared along the chimney base",
+      "Flashing that is rusted, lifted, or separating from the brick",
+      "Cracked or missing mortar where the flashing meets the chimney",
+    ],
+    faq: [
+      {
+        q: "How much does chimney flashing repair cost?",
+        a: "Resealing or repairing existing chimney flashing typically costs $400–$800. Full replacement with new step and counter flashing usually runs $800–$1,500, and adding a cricket behind a wide chimney adds to that. Doing it during a roof replacement is usually the most cost-effective.",
+      },
+      {
+        q: "Can chimney flashing just be caulked?",
+        a: "Caulking can stop a leak temporarily, but it dries out and cracks within a few seasons in Ontario's climate. Properly installed step and counter flashing is the permanent fix — sealant should only be a secondary layer, not the main defence.",
+      },
+      {
+        q: "What is a chimney cricket?",
+        a: "A cricket (or saddle) is a small peaked structure built on the uphill side of a chimney. It diverts water and snow around the chimney instead of letting it pool against the brick. It's standard practice for wider chimneys.",
+      },
+      {
+        q: "Is my chimney leak a roofing or masonry problem?",
+        a: "It can be either. Failed flashing is a roofing issue, while a cracked chimney crown, porous brick, or a missing cap are masonry issues. A roofer can inspect the flashing and tell you if they see masonry problems that need a mason.",
+      },
+      {
+        q: "What if I don't use my chimney anymore?",
+        a: "An unused chimney still needs proper flashing, a cap, and a sound crown. If you'll never use it, some homeowners have it removed below the roofline and the roof patched over — which eliminates the leak point entirely. A roofer and mason can quote both options.",
+      },
+    ],
+  },
 ];
 
 /** Look up a service by its slug */

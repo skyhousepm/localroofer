@@ -41,7 +41,7 @@ export default function Header() {
                 Services
                 <ChevronDown size={13} className="opacity-50" />
               </button>
-              <div className="absolute top-full left-0 hidden group-hover:block bg-[#1E293B] border border-white/10 rounded-xl shadow-xl py-2 w-56 z-50 mt-1">
+              <div className="absolute top-full left-0 hidden group-hover:block bg-[#1E293B] border border-white/10 rounded-xl shadow-xl py-2 w-64 z-50 mt-1">
                 {services.map((s) => (
                   <Link
                     key={s.slug}

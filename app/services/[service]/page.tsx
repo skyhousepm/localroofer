@@ -12,6 +12,10 @@ import {
   Layers,
   CheckCircle2,
   AlertTriangle,
+  CloudRain,
+  Sun,
+  Wind,
+  Flame,
 } from "lucide-react";
 import { services, getServiceBySlug } from "@/lib/services";
 import { contractors } from "@/lib/contractors";
@@ -48,6 +52,10 @@ const iconMap: Record<string, React.ElementType> = {
   ClipboardList,
   Zap,
   Layers,
+  CloudRain,
+  Sun,
+  Wind,
+  Flame,
 };
 
 /* ── Trust badges ────────────────────────────────────────────────── */
