@@ -91,6 +91,13 @@ export default function Header() {
             </Link>
 
             <Link
+              href="/guides"
+              className={`text-sm font-medium transition-colors ${pathname.startsWith("/guides") ? "text-[#F97316]" : "text-white/80 hover:text-white"}`}
+            >
+              Guides
+            </Link>
+
+            <Link
               href="/#quote"
               className="text-white/80 hover:text-white text-sm font-medium transition-colors"
             >
@@ -204,6 +211,14 @@ export default function Header() {
           </div>
 
           {/* Flat links */}
+          <Link
+            href="/guides"
+            onClick={closeMobile}
+            className="flex items-center py-3.5 text-sm font-medium text-white/80 border-b border-white/10"
+          >
+            Guides
+          </Link>
+
           <Link
             href="/#quote"
             onClick={closeMobile}

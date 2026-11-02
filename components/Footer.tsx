@@ -98,6 +98,11 @@ export default function Footer() {
                       FAQ
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/guides" className="hover:text-[#F97316] transition-colors">
+                      Roofing Guides
+                    </Link>
+                  </li>
                   <li className="pt-1 border-t border-white/10 mt-2">
                     <Link href="/partners" className="hover:text-[#F97316] transition-colors font-medium text-white/80">
                       Partner With Us →

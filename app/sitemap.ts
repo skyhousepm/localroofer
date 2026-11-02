@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { locations } from "@/lib/locations";
 import { services } from "@/lib/services";
 import { contractors } from "@/lib/contractors";
+import { guides } from "@/lib/guides";
 
 const BASE_URL = "https://www.localroofer.ca";
 
@@ -53,6 +54,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const guidePages: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/guides`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    ...guides.map((g) => ({
+      url: `${BASE_URL}/guides/${g.slug}`,
+      lastModified: new Date(g.updated),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
+
   const partnerPage: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/partners`,
@@ -62,5 +78,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...core, ...servicePages, ...locationsIndex, ...locationPages, ...contractorPages, ...partnerPage];
+  return [...core, ...servicePages, ...locationsIndex, ...locationPages, ...contractorPages, ...guidePages, ...partnerPage];
 }
