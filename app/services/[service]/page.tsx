@@ -25,10 +25,11 @@ export function generateStaticParams() {
 
 /* ── Per-page metadata ───────────────────────────────────────────── */
 export async function generateMetadata({
-  params,
+  params: paramsPromise,
 }: {
-  params: { service: string };
+  params: Promise<{ service: string }>;
 }): Promise<Metadata> {
+  const params = await paramsPromise;
   const service = getServiceBySlug(params.service);
   if (!service) return {};
   return {
@@ -69,11 +70,12 @@ const trustBadges = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════════ */
-export default function ServicePage({
-  params,
+export default async function ServicePage({
+  params: paramsPromise,
 }: {
-  params: { service: string };
+  params: Promise<{ service: string }>;
 }) {
+  const params = await paramsPromise;
   const service = getServiceBySlug(params.service);
   if (!service) notFound();
 

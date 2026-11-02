@@ -23,10 +23,11 @@ export function generateStaticParams() {
 
 /* ── Metadata ────────────────────────────────────────────────────── */
 export async function generateMetadata({
-  params,
+  params: paramsPromise,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const params = await paramsPromise;
   const c = getContractorBySlug(params.slug);
   if (!c) return {};
   return {
@@ -103,11 +104,12 @@ function VerificationBadge({
 }
 
 /* ═══════════════════════════════════════════════════════════════════ */
-export default function ContractorProfilePage({
-  params,
+export default async function ContractorProfilePage({
+  params: paramsPromise,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const params = await paramsPromise;
   const c = getContractorBySlug(params.slug);
   if (!c) notFound();
 

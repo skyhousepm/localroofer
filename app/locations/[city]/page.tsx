@@ -14,10 +14,11 @@ export function generateStaticParams() {
 
 /* ── Per-page metadata ───────────────────────────────────────────── */
 export async function generateMetadata({
-  params,
+  params: paramsPromise,
 }: {
-  params: { city: string };
+  params: Promise<{ city: string }>;
 }): Promise<Metadata> {
+  const params = await paramsPromise;
   const city = getCityBySlug(params.city);
   if (!city) return {};
 
@@ -48,7 +49,8 @@ const trustBadges = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════════ */
-export default function CityPage({ params }: { params: { city: string } }) {
+export default async function CityPage({ params: paramsPromise }: { params: Promise<{ city: string }> }) {
+  const params = await paramsPromise;
   const city = getCityBySlug(params.city);
   if (!city) notFound();
 

@@ -12,11 +12,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.localroofer.ca/find" },
 };
 
-export default function FindPage({
-  searchParams,
+export default async function FindPage({
+  searchParams: searchParamsPromise,
 }: {
-  searchParams: { service?: string; city?: string };
+  searchParams: Promise<{ service?: string; city?: string }>;
 }) {
+  const searchParams = await searchParamsPromise;
   // All unique cities from contractor service areas for the filter dropdown
   const allCities = locations.map((l) => l.name);
 
