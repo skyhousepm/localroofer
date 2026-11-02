@@ -2,6 +2,7 @@ import Link from "next/link";
 import { locations } from "@/lib/locations";
 import { services } from "@/lib/services";
 import { contractors } from "@/lib/contractors";
+import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 export default function Footer() {
   const col1 = locations.slice(0, 8);
@@ -23,10 +24,10 @@ export default function Footer() {
               Connecting Toronto &amp; GTA homeowners with trusted, licensed local roofing contractors.
             </p>
             <a
-              href="tel:+14163002345"
+              href={`tel:${PHONE_TEL}`}
               className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#F97316] transition-colors"
             >
-              416 300-2345
+              {PHONE_DISPLAY}
             </a>
           </div>
 
@@ -151,13 +152,13 @@ export default function Footer() {
             <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Contact</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="tel:+14163002345" className="hover:text-[#F97316] transition-colors">
-                  416 300-2345
+                <a href={`tel:${PHONE_TEL}`} className="hover:text-[#F97316] transition-colors">
+                  {PHONE_DISPLAY}
                 </a>
               </li>
               <li>
-                <a href="mailto:info@localroofer.ca" className="hover:text-[#F97316] transition-colors">
-                  info@localroofer.ca
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-[#F97316] transition-colors">
+                  {CONTACT_EMAIL}
                 </a>
               </li>
               <li>Mon–Fri 7am–6pm</li>

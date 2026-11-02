@@ -3,12 +3,13 @@ import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { locations } from "@/lib/locations";
 import QuoteForm from "@/components/QuoteForm";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Roofing Service Areas in Toronto & the GTA",
   description:
     "LocalRoofer.ca connects homeowners across Toronto and the GTA with licensed, insured local roofers. Find roofing services in your city and get a free estimate.",
-  alternates: { canonical: "https://www.localroofer.ca/locations" },
+  alternates: { canonical: `${SITE_URL}/locations` },
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */

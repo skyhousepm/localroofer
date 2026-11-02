@@ -3,8 +3,8 @@ import { locations } from "@/lib/locations";
 import { services } from "@/lib/services";
 import { contractors } from "@/lib/contractors";
 import { guides } from "@/lib/guides";
+import { SITE_URL as BASE_URL } from "@/lib/site";
 
-const BASE_URL = "https://www.localroofer.ca";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

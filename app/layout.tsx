@@ -4,10 +4,10 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SITE_URL as BASE_URL } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const BASE_URL = "https://www.localroofer.ca";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

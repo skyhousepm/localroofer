@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { CheckCircle2, Users, MapPin, TrendingUp, Star } from "lucide-react";
 import PartnerForm from "@/components/PartnerForm";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Partner With Us — Join the LocalRoofer.ca Network",
   description:
     "Are you a licensed roofing contractor in Toronto or the GTA? Apply to join the LocalRoofer.ca partner network and receive qualified local leads. No subscription fees.",
-  alternates: { canonical: "https://www.localroofer.ca/partners" },
+  alternates: { canonical: `${SITE_URL}/partners` },
 };
 
 const benefits = [

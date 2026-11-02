@@ -21,6 +21,7 @@ import { services, getServiceBySlug } from "@/lib/services";
 import { contractors } from "@/lib/contractors";
 import ContractorCard from "@/components/ContractorCard";
 import QuoteForm from "@/components/QuoteForm";
+import { SITE_URL } from "@/lib/site";
 
 /* ── Static params ───────────────────────────────────────────────── */
 export function generateStaticParams() {
@@ -40,7 +41,7 @@ export async function generateMetadata({
     title: `${service.name} in Toronto & GTA`,
     description: `${service.tagline} Serving Toronto, Mississauga, Brampton, Markham, Vaughan, and all GTA cities. Licensed contractors — free estimates.`,
     alternates: {
-      canonical: `https://www.localroofer.ca/services/${service.slug}`,
+      canonical: `${SITE_URL}/services/${service.slug}`,
     },
   };
 }

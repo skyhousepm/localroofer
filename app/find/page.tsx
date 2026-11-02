@@ -4,12 +4,13 @@ import { ChevronRight, ClipboardCheck, ShieldCheck, Star, Users } from "lucide-r
 import { averageRating, contractors, totalReviewCount } from "@/lib/contractors";
 import { locations } from "@/lib/locations";
 import FindClient from "./FindClient";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Find a Roofer in Toronto & the GTA",
   description:
     "Get matched with a licensed local roofing contractor anywhere in Toronto and the Greater Toronto Area. Tell us about your roof and we'll connect you with the right roofer.",
-  alternates: { canonical: "https://www.localroofer.ca/find" },
+  alternates: { canonical: `${SITE_URL}/find` },
 };
 
 export default async function FindPage({
@@ -18,8 +19,8 @@ export default async function FindPage({
   searchParams: Promise<{ service?: string; city?: string }>;
 }) {
   const searchParams = await searchParamsPromise;
-  // All unique cities from contractor service areas for the filter dropdown
-  const allCities = locations.map((l) => l.name);
+  // Every service city, for the filter dropdown
+  const allCities = locations.map(({ slug, name }) => ({ slug, name }));
 
   // Stats — null / zero until real contractors are listed
   const totalReviews = totalReviewCount();
@@ -94,7 +95,7 @@ export default async function FindPage({
                     <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
                       <Users size={15} className="text-orange-500" />
                     </div>
-                    <span>Serving all 15 GTA cities</span>
+                    <span>Serving all {locations.length} GTA cities</span>
                   </div>
                 </>
               )}

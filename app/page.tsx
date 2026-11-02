@@ -6,26 +6,27 @@ import ContractorCard from "@/components/ContractorCard";
 import { locations } from "@/lib/locations";
 import { services } from "@/lib/services";
 import { contractors } from "@/lib/contractors";
+import { CONTACT_EMAIL, PHONE_TEL, SITE_URL } from "@/lib/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "LocalRoofer.ca — Trusted Roofing in Toronto & the GTA",
   description:
     "Get a free roofing quote from LocalRoofer.ca. We connect Toronto & GTA homeowners with licensed, insured local roofers for repair, replacement, inspection, and emergency service.",
-  alternates: { canonical: "https://www.localroofer.ca" },
+  alternates: { canonical: SITE_URL },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://www.localroofer.ca",
+  "@id": SITE_URL,
   name: "LocalRoofer.ca",
   description:
     "LocalRoofer.ca connects Toronto and Greater Toronto Area homeowners with trusted, licensed local roofing contractors for roof repair, replacement, inspection, and emergency service.",
-  url: "https://www.localroofer.ca",
-  telephone: "+14163002345",
-  email: "info@localroofer.ca",
-  image: "https://www.localroofer.ca/og-image.jpg",
+  url: SITE_URL,
+  telephone: PHONE_TEL,
+  email: CONTACT_EMAIL,
+  image: `${SITE_URL}/opengraph-image`,
   priceRange: "$$",
   openingHours: "Mo-Fr 07:00-18:00",
   areaServed: locations.map((city) => ({
@@ -35,48 +36,15 @@ const jsonLd = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Roofing Services",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Roof Repair",
-          description:
-            "Professional roof repair for leaks, storm damage, missing shingles, flashing, and more.",
-          url: "https://www.localroofer.ca/services/roof-repair",
-        },
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.name,
+        description: service.tagline,
+        url: `${SITE_URL}/services/${service.slug}`,
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Roof Replacement",
-          description:
-            "Full roof replacement using premium asphalt, metal, and flat roofing systems.",
-          url: "https://www.localroofer.ca/services/roof-replacement",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Roof Inspection",
-          description:
-            "Detailed roof inspections for home buyers, sellers, and owners across the GTA.",
-          url: "https://www.localroofer.ca/services/roof-inspection",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Emergency Roofing",
-          description:
-            "24/7 emergency roofing response for storm damage, active leaks, and fallen debris.",
-          url: "https://www.localroofer.ca",
-        },
-      },
-    ],
+    })),
   },
   sameAs: [],
 };

@@ -2,11 +2,10 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
 import { appendRow, sheetTimestamp } from "@/lib/sheets";
-import { BUSINESS_PHONE_DISPLAY, BUSINESS_PHONE_TEL, CAN_EMAIL_CUSTOMERS, FROM_ADDRESS } from "@/lib/email";
+import { CAN_EMAIL_CUSTOMERS, FROM_ADDRESS } from "@/lib/email";
+import { LEAD_INBOX as LEAD_RECIPIENT, PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-const LEAD_RECIPIENT = "ansik@skyhouse.ca";
 
 /* ── Type ──────────────────────────────────────────────────────────── */
 interface LeadPayload {
@@ -263,7 +262,7 @@ function buildConfirmationHtml(lead: LeadPayload): string {
 
               <p style="margin:0;font-size:15px;color:#334155;line-height:1.6;">
                 Roof leaking right now? Call us at
-                <a href="tel:${BUSINESS_PHONE_TEL}" style="color:#F97316;font-weight:600;text-decoration:none;">${BUSINESS_PHONE_DISPLAY}</a>.
+                <a href="tel:${PHONE_TEL}" style="color:#F97316;font-weight:600;text-decoration:none;">${PHONE_DISPLAY}</a>.
                 To update your request, just reply to this email.
               </p>
             </td>

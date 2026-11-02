@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { contractors, getContractorBySlug } from "@/lib/contractors";
 import QuoteForm from "@/components/QuoteForm";
+import { SITE_URL } from "@/lib/site";
 
 /* ── Static params ───────────────────────────────────────────────── */
 export function generateStaticParams() {
@@ -33,7 +34,7 @@ export async function generateMetadata({
   return {
     title: `${c.name} — Roofing Contractor in ${c.city}, ON`,
     description: `${c.tagline} ${c.reviewCount} reviews · ${c.rating}/10 rating. Serving ${c.serviceAreas.slice(0, 3).join(", ")} and more. Free estimates.`,
-    alternates: { canonical: `https://www.localroofer.ca/roofers/${c.slug}` },
+    alternates: { canonical: `${SITE_URL}/roofers/${c.slug}` },
   };
 }
 

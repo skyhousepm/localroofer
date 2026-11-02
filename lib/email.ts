@@ -10,6 +10,3 @@ export const FROM_ADDRESS = process.env.RESEND_FROM || "LocalRoofer.ca <onboardi
 
 /** True once a verified sending domain is configured. */
 export const CAN_EMAIL_CUSTOMERS = Boolean(process.env.RESEND_FROM);
-
-export const BUSINESS_PHONE_DISPLAY = "(416) 300-2345";
-export const BUSINESS_PHONE_TEL = "+14163002345";

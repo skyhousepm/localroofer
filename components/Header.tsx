@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Phone, Menu, X, ChevronDown } from "lucide-react";
 import { services } from "@/lib/services";
 import { locations } from "@/lib/locations";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 const headerLocations = locations.slice(0, 6);
 
@@ -115,11 +116,11 @@ export default function Header() {
           {/* Right side: phone + hamburger */}
           <div className="flex items-center gap-3">
             <a
-              href="tel:+14163002345"
+              href={`tel:${PHONE_TEL}`}
               className="flex items-center gap-2 text-white font-semibold text-sm hover:text-[#F97316] transition-colors"
             >
               <Phone className="w-4 h-4 text-[#F97316]" />
-              <span className="hidden sm:inline">416 300-2345</span>
+              <span className="hidden sm:inline">{PHONE_DISPLAY}</span>
             </a>
 
             {/* Hamburger — mobile only */}
@@ -237,11 +238,11 @@ export default function Header() {
 
           {/* Phone */}
           <a
-            href="tel:+14163002345"
+            href={`tel:${PHONE_TEL}`}
             className="flex items-center gap-2 mt-4 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
           >
             <Phone size={15} className="text-[#F97316]" />
-            416 300-2345
+            {PHONE_DISPLAY}
           </a>
 
         </div>

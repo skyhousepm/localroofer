@@ -5,21 +5,18 @@ import Link from "next/link";
 import { ArrowRight, Hammer, Search, SlidersHorizontal, X } from "lucide-react";
 import type { Contractor } from "@/lib/contractors";
 import ContractorCard from "@/components/ContractorCard";
+import { services } from "@/lib/services";
 
 interface FindClientProps {
   contractors: Contractor[];
-  cities: string[];
+  cities: { slug: string; name: string }[];
   initialService?: string;
   initialCity?: string;
 }
 
 const serviceOptions = [
   { value: "", label: "All Services" },
-  { value: "roof-repair", label: "Roof Repair" },
-  { value: "roof-replacement", label: "Roof Replacement" },
-  { value: "roof-inspection", label: "Roof Inspection" },
-  { value: "emergency-roofing", label: "Emergency Roofing" },
-  { value: "flat-roof", label: "Flat Roof" },
+  ...services.map((s) => ({ value: s.slug, label: s.name })),
 ];
 
 const roofTypeOptions = [
@@ -41,7 +38,7 @@ export default function FindClient({
 
   const cityOptions = [
     { value: "", label: "All Cities" },
-    ...cities.map((c) => ({ value: c.toLowerCase(), label: c })),
+    ...cities.map((c) => ({ value: c.slug, label: c.name })),
   ];
 
   const filtered = useMemo(() => {
@@ -49,16 +46,18 @@ export default function FindClient({
       .filter((c) => {
         if (service && !c.services.includes(service)) return false;
         if (city) {
+          // `city` is a slug; contractor data stores display names
+          const cityName = cities.find((x) => x.slug === city)?.name.toLowerCase() ?? city;
           const matchesCity =
-            c.city.toLowerCase() === city ||
-            c.serviceAreas.some((a) => a.toLowerCase() === city);
+            c.city.toLowerCase() === cityName ||
+            c.serviceAreas.some((a) => a.toLowerCase() === cityName);
           if (!matchesCity) return false;
         }
         if (roofType && !c.roofTypes.includes(roofType)) return false;
         return true;
       })
       .sort((a, b) => b.rating - a.rating);
-  }, [contractors, service, city, roofType]);
+  }, [contractors, cities, service, city, roofType]);
 
   const hasFilters = service || city || roofType;
 

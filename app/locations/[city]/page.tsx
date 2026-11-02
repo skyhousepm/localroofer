@@ -6,6 +6,7 @@ import { locations, getCityBySlug } from "@/lib/locations";
 import { contractors } from "@/lib/contractors";
 import ContractorCard from "@/components/ContractorCard";
 import QuoteForm from "@/components/QuoteForm";
+import { SITE_URL } from "@/lib/site";
 
 /* ── Static params — pre-render every city at build time ─────────── */
 export function generateStaticParams() {
@@ -23,9 +24,9 @@ export async function generateMetadata({
   if (!city) return {};
 
   return {
-    title: `Roofing Services in ${city.name}, ON | LocalRoofer.ca`,
+    title: `Roofing Services in ${city.name}, ON`,
     description: `Looking for a trusted roofer in ${city.name}? LocalRoofer.ca connects ${city.name} homeowners with licensed, insured local roofing contractors. Free estimates — call today.`,
-    alternates: { canonical: `https://www.localroofer.ca/locations/${city.slug}` },
+    alternates: { canonical: `${SITE_URL}/locations/${city.slug}` },
   };
 }
 

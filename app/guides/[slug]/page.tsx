@@ -5,8 +5,8 @@ import { CheckCircle2 } from "lucide-react";
 import { guides, getGuideBySlug } from "@/lib/guides";
 import { getServiceBySlug } from "@/lib/services";
 import QuoteForm from "@/components/QuoteForm";
+import { SITE_URL as BASE_URL } from "@/lib/site";
 
-const BASE_URL = "https://www.localroofer.ca";
 
 /* ── Static params — pre-render every guide at build time ────────── */
 export function generateStaticParams() {

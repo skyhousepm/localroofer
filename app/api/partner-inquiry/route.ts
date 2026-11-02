@@ -2,11 +2,10 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { escapeFields, isRateLimited, looksLikeBot, validateFields } from "@/lib/formGuard";
 import { FROM_ADDRESS } from "@/lib/email";
+import { LEAD_INBOX as PARTNER_RECIPIENT } from "@/lib/site";
 import { appendRow, sheetTimestamp } from "@/lib/sheets";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-const PARTNER_RECIPIENT = "ansik@skyhouse.ca";
 
 interface PartnerPayload {
   name: string;

@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { guides } from "@/lib/guides";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Roofing Guides for GTA Homeowners",
   description:
     "Practical roofing guides for Toronto and GTA homeowners — costs, warning signs, ice dams, repair vs. replacement, and how to hire a roofer.",
-  alternates: { canonical: "https://www.localroofer.ca/guides" },
+  alternates: { canonical: `${SITE_URL}/guides` },
 };
 
 /* ═══════════════════════════════════════════════════════════════════ */

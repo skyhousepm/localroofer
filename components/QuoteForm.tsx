@@ -3,25 +3,7 @@
 import { useState, useRef, FormEvent } from "react";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { track } from "@vercel/analytics";
-
-/* ── GTA city list ────────────────────────────────────────────────── */
-const gtaCities = [
-  "Toronto",
-  "Mississauga",
-  "Brampton",
-  "Markham",
-  "Vaughan",
-  "Richmond Hill",
-  "Oakville",
-  "Burlington",
-  "Ajax",
-  "Pickering",
-  "Whitby",
-  "Oshawa",
-  "Newmarket",
-  "Aurora",
-  "Other",
-];
+import { locations } from "@/lib/locations";
 
 /* ── Shared field style ───────────────────────────────────────────── */
 const fieldCls =
@@ -240,11 +222,12 @@ export default function QuoteForm({
             className={fieldCls}
           >
             <option value="" disabled>Select your city</option>
-            {gtaCities.map((city) => (
-              <option key={city} value={city.toLowerCase().replace(/\s+/g, "-")}>
-                {city}
+            {locations.map((city) => (
+              <option key={city.slug} value={city.slug}>
+                {city.name}
               </option>
             ))}
+            <option value="other">Other</option>
           </select>
         </div>
 

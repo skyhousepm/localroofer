@@ -3,33 +3,17 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
+import { services } from "@/lib/services";
+import { locations } from "@/lib/locations";
 
 const serviceOptions = [
   { value: "", label: "All Services" },
-  { value: "roof-repair", label: "Roof Repair" },
-  { value: "roof-replacement", label: "Roof Replacement" },
-  { value: "roof-inspection", label: "Roof Inspection" },
-  { value: "emergency-roofing", label: "Emergency Roofing" },
-  { value: "flat-roof", label: "Flat Roof" },
+  ...services.map((s) => ({ value: s.slug, label: s.name })),
 ];
 
 const cityOptions = [
   { value: "", label: "All Cities" },
-  { value: "toronto", label: "Toronto" },
-  { value: "mississauga", label: "Mississauga" },
-  { value: "brampton", label: "Brampton" },
-  { value: "markham", label: "Markham" },
-  { value: "vaughan", label: "Vaughan" },
-  { value: "richmond-hill", label: "Richmond Hill" },
-  { value: "oakville", label: "Oakville" },
-  { value: "burlington", label: "Burlington" },
-  { value: "ajax", label: "Ajax" },
-  { value: "pickering", label: "Pickering" },
-  { value: "whitby", label: "Whitby" },
-  { value: "oshawa", label: "Oshawa" },
-  { value: "newmarket", label: "Newmarket" },
-  { value: "aurora", label: "Aurora" },
-  { value: "stouffville", label: "Stouffville" },
+  ...locations.map((l) => ({ value: l.slug, label: l.name })),
 ];
 
 export default function SearchHero() {
