@@ -25,7 +25,7 @@ export async function generateMetadata({
 
   return {
     title: `Roofing Services in ${city.name}, ON`,
-    description: `Looking for a trusted roofer in ${city.name}? LocalRoofer.ca connects ${city.name} homeowners with licensed, insured local roofing contractors. Free estimates — call today.`,
+    description: `Looking for a trusted roofer in ${city.name}? LocalRoofer.ca connects ${city.name} homeowners with insured local roofing contractors. Free estimates — call today.`,
     alternates: { canonical: `${SITE_URL}/locations/${city.slug}` },
   };
 }
@@ -34,8 +34,8 @@ export async function generateMetadata({
 const trustBadges = [
   {
     icon: ShieldCheck,
-    title: "Licensed & Insured",
-    desc: "We only refer roofers who hold a valid Ontario contractor licence and carry liability coverage.",
+    title: "Insured & WSIB-Covered",
+    desc: "We only refer roofers who carry liability insurance and hold a WSIB clearance certificate.",
   },
   {
     icon: BadgeDollarSign,
@@ -45,7 +45,7 @@ const trustBadges = [
   {
     icon: Clock,
     title: "Fast Response",
-    desc: "We reply within hours, not days. Emergency calls answered 7 days a week.",
+    desc: "We reply within hours, not days. Emergency calls answered 24/7.",
   },
 ];
 
@@ -261,7 +261,7 @@ export default async function CityPage({ params: paramsPromise }: { params: Prom
                   Ready to get started?
                 </h3>
                 <p className="text-white/60 text-sm leading-relaxed">
-                  Get matched with a trusted, licensed local roofer in {city.name} today. Free estimates, no obligation — most inquiries answered within hours.
+                  Get matched with a trusted local roofer in {city.name} today. Free estimates, no obligation — most inquiries answered within hours.
                 </p>
               </div>
               <Link

@@ -78,7 +78,7 @@ export default function FindClient({
           Contractor listings are coming soon
         </h2>
         <p className="text-slate-400 text-base leading-relaxed max-w-xl mx-auto mb-8">
-          We&apos;re onboarding licensed roofing contractors across Toronto and the GTA
+          We&apos;re onboarding local roofing contractors across Toronto and the GTA
           right now. In the meantime, tell us about your roof and we&apos;ll connect you
           with a local roofer directly — free, and with no obligation.
         </p>

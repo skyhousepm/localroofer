@@ -21,7 +21,7 @@ interface PartnerPayload {
 function buildPartnerEmailHtml(p: PartnerPayload, timestamp: string): string {
   const licensedBadge =
     p.licensed === "yes"
-      ? `<span style="background:#DCFCE7;color:#15803D;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;">✓ Licensed & Insured</span>`
+      ? `<span style="background:#DCFCE7;color:#15803D;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;">✓ Insured & WSIB</span>`
       : `<span style="background:#FEF9C3;color:#A16207;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;">Pending / Unsure</span>`;
 
   return `
@@ -108,7 +108,7 @@ function buildPartnerEmailHtml(p: PartnerPayload, timestamp: string): string {
               </tr>
               <tr>
                 <td style="padding:10px 0;border-bottom:1px solid #F1F5F9;">
-                  <span style="font-size:12px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.4px;">Licensed & Insured</span>
+                  <span style="font-size:12px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:0.4px;">Insured & WSIB</span>
                 </td>
                 <td style="padding:10px 0;border-bottom:1px solid #F1F5F9;">${licensedBadge}</td>
               </tr>

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "LocalRoofer.ca connects Toronto & GTA homeowners with licensed, insured local roofing contractors. Free estimates for roof repair, replacement, and inspection. Fast response, honest pricing.",
+    "LocalRoofer.ca connects Toronto & GTA homeowners with insured local roofing contractors. Free estimates for roof repair, replacement, and inspection. Fast response, honest pricing.",
 
   keywords: [
     "roofing contractor Toronto",
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
     siteName: "LocalRoofer.ca",
     title: "LocalRoofer.ca — Trusted Roofing in Toronto & the GTA",
     description:
-      "Connect with trusted, licensed local roofers across Toronto & the GTA. Free estimates for repair, replacement, and inspection.",
+      "Connect with trusted local roofers across Toronto & the GTA. Free estimates for repair, replacement, and inspection.",
   },
 
   twitter: {
     card: "summary_large_image",
     title: "LocalRoofer.ca — Trusted Roofing in Toronto & the GTA",
     description:
-      "Connect with trusted, licensed local roofers across Toronto & the GTA. Free estimates for repair, replacement, and inspection.",
+      "Connect with trusted local roofers across Toronto & the GTA. Free estimates for repair, replacement, and inspection.",
   },
 
   robots: {

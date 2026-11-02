@@ -39,7 +39,7 @@ export async function generateMetadata({
   if (!service) return {};
   return {
     title: `${service.name} in Toronto & GTA`,
-    description: `${service.tagline} Serving Toronto, Mississauga, Brampton, Markham, Vaughan, and all GTA cities. Licensed contractors — free estimates.`,
+    description: `${service.tagline} Serving Toronto, Mississauga, Brampton, Markham, Vaughan, and all GTA cities. Local contractors — free estimates.`,
     alternates: {
       canonical: `${SITE_URL}/services/${service.slug}`,
     },
@@ -63,8 +63,8 @@ const iconMap: Record<string, React.ElementType> = {
 const trustBadges = [
   {
     icon: ShieldCheck,
-    title: "Licensed & Insured",
-    desc: "We only refer roofers who hold a valid Ontario contractor licence and carry liability coverage.",
+    title: "Insured & WSIB-Covered",
+    desc: "We only refer roofers who carry liability insurance and hold a WSIB clearance certificate.",
   },
   {
     icon: BadgeDollarSign,
@@ -74,7 +74,7 @@ const trustBadges = [
   {
     icon: Clock,
     title: "Fast Response",
-    desc: "We reply within hours. Emergency calls answered 7 days a week.",
+    desc: "We reply within hours. Emergency calls answered 24/7.",
   },
 ];
 
@@ -383,7 +383,7 @@ export default async function ServicePage({
               Get a Free {service.name} Quote
             </h2>
             <p className="text-gray-500 text-base max-w-lg mx-auto">
-              Fill out the form and a licensed GTA roofing contractor will be in touch within a few hours.
+              Fill out the form and a local GTA roofing contractor will be in touch within a few hours.
             </p>
           </div>
           <QuoteForm defaultJobType={service.slug === "emergency-roofing" ? "emergency" : service.slug === "roof-repair" ? "repair" : service.slug === "roof-replacement" ? "replacement" : service.slug === "roof-inspection" ? "inspection" : ""} />

@@ -12,7 +12,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "LocalRoofer.ca — Trusted Roofing in Toronto & the GTA",
   description:
-    "Get a free roofing quote from LocalRoofer.ca. We connect Toronto & GTA homeowners with licensed, insured local roofers for repair, replacement, inspection, and emergency service.",
+    "Get a free roofing quote from LocalRoofer.ca. We connect Toronto & GTA homeowners with insured local roofers for repair, replacement, inspection, and emergency service.",
   alternates: { canonical: SITE_URL },
 };
 
@@ -22,13 +22,13 @@ const jsonLd = {
   "@id": SITE_URL,
   name: "LocalRoofer.ca",
   description:
-    "LocalRoofer.ca connects Toronto and Greater Toronto Area homeowners with trusted, licensed local roofing contractors for roof repair, replacement, inspection, and emergency service.",
+    "LocalRoofer.ca connects Toronto and Greater Toronto Area homeowners with trusted local roofing contractors for roof repair, replacement, inspection, and emergency service.",
   url: SITE_URL,
   telephone: PHONE_TEL,
   email: CONTACT_EMAIL,
   image: `${SITE_URL}/opengraph-image`,
   priceRange: "$$",
-  openingHours: "Mo-Fr 07:00-18:00",
+  openingHours: "Mo-Su 00:00-23:59",
   areaServed: locations.map((city) => ({
     "@type": "City",
     name: city.name,
@@ -53,8 +53,8 @@ const jsonLd = {
 const trustBadges = [
   {
     icon: ShieldCheck,
-    title: "Licensed & Insured",
-    desc: "We only refer roofers who hold a valid Ontario contractor licence and carry liability coverage.",
+    title: "Insured & WSIB-Covered",
+    desc: "We only refer roofers who carry liability insurance and hold a WSIB clearance certificate.",
   },
   {
     icon: BadgeDollarSign,
@@ -64,7 +64,7 @@ const trustBadges = [
   {
     icon: Clock,
     title: "Fast Response",
-    desc: "We reply within hours, not days. Emergency calls answered 7 days a week.",
+    desc: "We reply within hours, not days. Emergency calls answered 24/7.",
   },
 ];
 
@@ -80,7 +80,7 @@ const howItWorksSteps = [
     number: "2",
     icon: Star,
     title: "We Match You Locally",
-    desc: "We connect you with a licensed roofing contractor who works in your city and handles the kind of job you described.",
+    desc: "We connect you with a local roofing contractor who works in your city and handles the kind of job you described.",
   },
   {
     number: "3",
@@ -181,7 +181,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tell us about your roof and we&apos;ll connect you with a licensed local
+            Tell us about your roof and we&apos;ll connect you with a local
             roofing contractor. Free quotes, no obligation.
           </p>
 
@@ -238,7 +238,7 @@ export default function HomePage() {
                     Our Partner Roofers
                   </h2>
                   <p className="text-slate-400 text-base max-w-xl">
-                    Licensed roofing contractors in the LocalRoofer.ca network.
+                    Local roofing contractors in the LocalRoofer.ca network.
                   </p>
                 </div>
                 <Link
@@ -278,7 +278,7 @@ export default function HomePage() {
                 We&apos;re Building Our Roofer Network
               </h2>
               <p className="text-slate-400 text-base leading-relaxed mb-8">
-                LocalRoofer.ca is onboarding licensed roofing contractors across Toronto
+                LocalRoofer.ca is onboarding local roofing contractors across Toronto
                 and the GTA. Homeowners can request a quote today and we&apos;ll connect
                 you with a local roofer directly — contractor profiles will appear here as
                 our network grows.
@@ -347,7 +347,7 @@ export default function HomePage() {
               Our Roofing Services
             </h2>
             <p className="text-gray-500 text-base max-w-2xl mx-auto">
-              From a single missing shingle to a complete roof replacement, LocalRoofer.ca connects GTA homeowners with the right licensed contractor for every job.
+              From a single missing shingle to a complete roof replacement, LocalRoofer.ca connects GTA homeowners with the right local contractor for every job.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -430,7 +430,7 @@ export default function HomePage() {
               Areas We Serve Across the GTA
             </h2>
             <p className="text-gray-500 text-base max-w-xl mx-auto">
-              Licensed local roofers available in all of these communities — click your city for local roofing information.
+              Local roofers available in all of these communities — click your city for local roofing information.
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-3">

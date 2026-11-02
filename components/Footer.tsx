@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="text-[#F97316] text-lg font-extrabold tracking-tight">Roofer</span>
             </div>
             <p className="text-sm leading-relaxed mb-5">
-              Connecting Toronto &amp; GTA homeowners with trusted, licensed local roofing contractors.
+              Connecting Toronto &amp; GTA homeowners with trusted local roofing contractors.
             </p>
             <a
               href={`tel:${PHONE_TEL}`}

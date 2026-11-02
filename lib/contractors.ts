@@ -37,7 +37,8 @@ export interface Contractor {
  * Add an entry only once a roofer has actually signed up through /partners and
  * you hold evidence for every claim you publish about them:
  *
- *   - `licensed`      — you have seen their Ontario licence / municipal permit standing
+ *   - `licensed`      — you have seen a current WSIB clearance certificate (Ontario has
+ *                       no province-wide roofing licence; the field name is historical)
  *   - `insured`       — you have a current certificate of insurance on file
  *   - `verified`      — you have confirmed the business is real and operating
  *   - `backgroundCheck` — a background check was actually performed

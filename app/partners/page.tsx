@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Partner With Us — Join the LocalRoofer.ca Network",
   description:
-    "Are you a licensed roofing contractor in Toronto or the GTA? Apply to join the LocalRoofer.ca partner network and receive qualified local leads. No subscription fees.",
+    "Are you a local roofing contractor in Toronto or the GTA? Apply to join the LocalRoofer.ca partner network and receive qualified local leads. No subscription fees.",
   alternates: { canonical: `${SITE_URL}/partners` },
 };
 
@@ -34,9 +34,8 @@ const benefits = [
 ];
 
 const requirements = [
-  "Valid Ontario contractor licence",
   "Minimum $2M general liability insurance",
-  "WSIB coverage for all workers",
+  "WSIB clearance certificate in good standing",
   "Minimum 2 years in business",
   "Ability to respond to leads within a few hours",
   "Commitment to quality workmanship and honest pricing",
@@ -68,7 +67,7 @@ export default function PartnersPage() {
 
           <p className="text-lg text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
             We connect homeowners across the GTA with trusted, local roofers every day.
-            If you&apos;re a licensed contractor looking for a steady stream of qualified leads
+            If you&apos;re a local contractor looking for a steady stream of qualified leads
             in your area, we want to hear from you.
           </p>
 

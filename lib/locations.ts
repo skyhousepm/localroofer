@@ -18,7 +18,7 @@ export const locations: CityData[] = [
     slug: "toronto",
     name: "Toronto",
     description:
-      "Toronto homeowners deal with freeze-thaw cycles, ice dams, and heavy snowfall that put roofs to the test every winter. LocalRoofer.ca connects Toronto residents with licensed, local roofing contractors who know Ontario's climate and building codes inside out — from the downtown core to North York, Scarborough, and Etobicoke.",
+      "Toronto homeowners deal with freeze-thaw cycles, ice dams, and heavy snowfall that put roofs to the test every winter. LocalRoofer.ca connects Toronto residents with local roofing contractors who know Ontario's climate and building codes inside out — from the downtown core to North York, Scarborough, and Etobicoke.",
     serviceNote:
       "Serving all Toronto neighbourhoods including North York, Scarborough, Etobicoke, East York, and the downtown core.",
     commonIssues: [
@@ -78,7 +78,7 @@ export const locations: CityData[] = [
     slug: "brampton",
     name: "Brampton",
     description:
-      "Brampton is one of Canada's fastest-growing cities, and its rooftops need contractors who can keep up. LocalRoofer.ca connects Brampton homeowners with licensed roofers offering fast turnaround, quality materials, and workmanship warranties — keeping families protected no matter the season.",
+      "Brampton is one of Canada's fastest-growing cities, and its rooftops need contractors who can keep up. LocalRoofer.ca connects Brampton homeowners with local roofers offering fast turnaround, quality materials, and workmanship warranties — keeping families protected no matter the season.",
     serviceNote:
       "Serving Bramalea, Heart Lake, Springdale, Gore, and all Brampton neighbourhoods.",
     commonIssues: [
@@ -108,7 +108,7 @@ export const locations: CityData[] = [
     slug: "markham",
     name: "Markham",
     description:
-      "Markham's mix of established communities and newer builds demands consistent, high-quality roofing. LocalRoofer.ca connects Markham homeowners with licensed local contractors for everything from minor repairs to full replacements — with materials and workmanship backed by warranty.",
+      "Markham's mix of established communities and newer builds demands consistent, high-quality roofing. LocalRoofer.ca connects Markham homeowners with local contractors for everything from minor repairs to full replacements — with materials and workmanship backed by warranty.",
     serviceNote:
       "Serving Unionville, Cornell, Milliken, Greensborough, and all Markham communities.",
     commonIssues: [
@@ -168,7 +168,7 @@ export const locations: CityData[] = [
     slug: "richmond-hill",
     name: "Richmond Hill",
     description:
-      "Richmond Hill homeowners need roofers who understand the demands of Ontario winters — from heavy snowloads to ice damming along eaves. LocalRoofer.ca connects Richmond Hill residents with licensed contractors who provide thorough inspections, quality repairs, and full replacements with long-term warranties.",
+      "Richmond Hill homeowners need roofers who understand the demands of Ontario winters — from heavy snowloads to ice damming along eaves. LocalRoofer.ca connects Richmond Hill residents with local contractors who provide thorough inspections, quality repairs, and full replacements with long-term warranties.",
     serviceNote:
       "Serving Oak Ridges, Jefferson, Bayview Hill, and all Richmond Hill communities.",
     commonIssues: [
@@ -288,7 +288,7 @@ export const locations: CityData[] = [
     slug: "whitby",
     name: "Whitby",
     description:
-      "Whitby's growing communities need roofing contractors who can handle everything from emergency leak repairs to complete re-roofs. LocalRoofer.ca pairs Whitby homeowners with licensed, local roofers who respond quickly and deliver quality work backed by a workmanship guarantee.",
+      "Whitby's growing communities need roofing contractors who can handle everything from emergency leak repairs to complete re-roofs. LocalRoofer.ca pairs Whitby homeowners with local roofers who respond quickly and deliver quality work backed by a workmanship guarantee.",
     serviceNote:
       "Serving Downtown Whitby, Pringle Creek, Brooklin, and all Whitby communities.",
     commonIssues: [
@@ -318,7 +318,7 @@ export const locations: CityData[] = [
     slug: "oshawa",
     name: "Oshawa",
     description:
-      "Oshawa homeowners have access to a wide range of housing — from century homes with aging roofs to modern builds that need maintenance. LocalRoofer.ca connects Oshawa residents with licensed local roofing contractors offering honest quotes, quality materials, and dependable service.",
+      "Oshawa homeowners have access to a wide range of housing — from century homes with aging roofs to modern builds that need maintenance. LocalRoofer.ca connects Oshawa residents with local roofing contractors offering honest quotes, quality materials, and dependable service.",
     serviceNote:
       "Serving Lakeview, Pinecrest, Kedron, McLaughlin, and all Oshawa communities.",
     commonIssues: [
@@ -408,7 +408,7 @@ export const locations: CityData[] = [
     slug: "aurora",
     name: "Aurora",
     description:
-      "Aurora's mix of heritage homes and newer subdivisions means roofing needs span the full range — from careful repairs on older structures to modern shingle systems on newer builds. LocalRoofer.ca connects Aurora homeowners with licensed local contractors who take pride in their work.",
+      "Aurora's mix of heritage homes and newer subdivisions means roofing needs span the full range — from careful repairs on older structures to modern shingle systems on newer builds. LocalRoofer.ca connects Aurora homeowners with local contractors who take pride in their work.",
     serviceNote:
       "Serving Aurora Highlands, Bayview Wellington, Aurora Village, and all Aurora communities.",
     commonIssues: [
@@ -438,7 +438,7 @@ export const locations: CityData[] = [
     slug: "barrie",
     name: "Barrie",
     description:
-      "Barrie receives some of the heaviest snowfall in Ontario thanks to Lake Simcoe's snow belt effect, making a well-maintained roof essential. LocalRoofer.ca connects Barrie homeowners with licensed roofing contractors experienced in high-load snow conditions, ice damming, and year-round repairs.",
+      "Barrie receives some of the heaviest snowfall in Ontario thanks to Lake Simcoe's snow belt effect, making a well-maintained roof essential. LocalRoofer.ca connects Barrie homeowners with local roofing contractors experienced in high-load snow conditions, ice damming, and year-round repairs.",
     serviceNote:
       "Serving Painswick, Ardagh, Holly, Allandale, and all Barrie communities.",
     commonIssues: [

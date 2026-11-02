@@ -9,7 +9,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Find a Roofer in Toronto & the GTA",
   description:
-    "Get matched with a licensed local roofing contractor anywhere in Toronto and the Greater Toronto Area. Tell us about your roof and we'll connect you with the right roofer.",
+    "Get matched with a local roofing contractor anywhere in Toronto and the Greater Toronto Area. Tell us about your roof and we'll connect you with the right roofer.",
   alternates: { canonical: `${SITE_URL}/find` },
 };
 
@@ -49,7 +49,7 @@ export default async function FindPage({
             <p className="text-slate-400 text-lg leading-relaxed mb-8">
               {listingsLive
                 ? "Browse our partner roofing contractors and compare the services they offer across the GTA."
-                : "Tell us about your roof and we'll connect you with a licensed local roofing contractor in your city — free, and with no obligation."}
+                : "Tell us about your roof and we'll connect you with a local roofing contractor in your city — free, and with no obligation."}
             </p>
 
             {/* Trust row */}

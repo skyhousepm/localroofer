@@ -8,7 +8,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Roofing Service Areas in Toronto & the GTA",
   description:
-    "LocalRoofer.ca connects homeowners across Toronto and the GTA with licensed, insured local roofers. Find roofing services in your city and get a free estimate.",
+    "LocalRoofer.ca connects homeowners across Toronto and the GTA with insured local roofers. Find roofing services in your city and get a free estimate.",
   alternates: { canonical: `${SITE_URL}/locations` },
 };
 
@@ -46,7 +46,7 @@ export default function LocationsPage() {
           </h1>
 
           <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
-            We connect homeowners with licensed local roofers in {locations.length} cities
+            We connect homeowners with local roofers in {locations.length} cities
             across Toronto and the Greater Toronto Area. Pick your city to see common local
             roofing issues and request a free estimate.
           </p>

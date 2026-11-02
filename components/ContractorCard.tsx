@@ -75,7 +75,7 @@ export default function ContractorCard({ contractor: c }: ContractorCardProps) {
               </span>
             )}
             {c.licensed && (
-              <span className="text-xs text-slate-400 font-medium">Licensed</span>
+              <span className="text-xs text-slate-400 font-medium">WSIB</span>
             )}
             {c.insured && (
               <span className="text-xs text-slate-400 font-medium">Insured</span>

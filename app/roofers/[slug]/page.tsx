@@ -177,7 +177,7 @@ export default async function ContractorProfilePage({
               {/* Verification badges */}
               <div className="flex flex-wrap gap-2">
                 <VerificationBadge active={c.verified} label="Verified" />
-                <VerificationBadge active={c.licensed} label="Licensed" />
+                <VerificationBadge active={c.licensed} label="WSIB Cleared" />
                 <VerificationBadge active={c.insured} label="Insured" />
                 <VerificationBadge active={c.backgroundCheck} label="Background Check" />
               </div>
@@ -397,7 +397,7 @@ export default async function ContractorProfilePage({
               </h3>
               <ul className="space-y-3">
                 {[
-                  { active: c.licensed, label: "Ontario Licensed Contractor" },
+                  { active: c.licensed, label: "WSIB Clearance on File" },
                   { active: c.insured, label: "Liability Insured" },
                   { active: c.verified, label: "LocalRoofer.ca Verified" },
                   { active: c.backgroundCheck, label: "Background Checked" },

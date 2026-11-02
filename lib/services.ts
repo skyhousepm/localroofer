@@ -27,7 +27,7 @@ export const services: ServiceData[] = [
       "Fast, expert repairs that stop leaks and protect your home — backed by a workmanship guarantee.",
     description: [
       "Roof repairs are the most common roofing service GTA homeowners need, and timing matters. A small leak left unaddressed can lead to water infiltration, insulation damage, mould growth, and costly structural repairs. Whether it's a single missing shingle after a windstorm or persistent ice dam leaking damaging your ceilings every winter, getting it fixed quickly protects your home and your wallet.",
-      "LocalRoofer.ca connects you with licensed, local roofing contractors who diagnose the problem correctly the first time. Our network handles everything from minor patch repairs to complex multi-point failures — on asphalt shingles, flat roofs, metal roofing, and more. Every repair comes with a written scope of work and a workmanship warranty so you know exactly what you're getting.",
+      "LocalRoofer.ca connects you with local roofing contractors who diagnose the problem correctly the first time. Our network handles everything from minor patch repairs to complex multi-point failures — on asphalt shingles, flat roofs, metal roofing, and more. Every repair comes with a written scope of work and a workmanship warranty so you know exactly what you're getting.",
       "If you're seeing water stains on ceilings, missing or curling shingles, granule buildup in your gutters, or daylight through your attic — don't wait. A professional repair now is always cheaper than a replacement later.",
     ],
     benefits: [
@@ -41,7 +41,7 @@ export const services: ServiceData[] = [
     processSteps: [
       {
         title: "Initial Assessment & Quote",
-        desc: "A licensed contractor visits your home, safely inspects the affected area from the roof surface, identifies the root cause of the problem, and provides a written quote with a clear scope of work — at no charge.",
+        desc: "A local contractor visits your home, safely inspects the affected area from the roof surface, identifies the root cause of the problem, and provides a written quote with a clear scope of work — at no charge.",
       },
       {
         title: "Material Sourcing & Scheduling",
@@ -70,7 +70,7 @@ export const services: ServiceData[] = [
       },
       {
         q: "Can you repair just a few shingles without replacing the whole roof?",
-        a: "Yes, absolutely. Spot repairs are often the most cost-effective solution when the rest of the roof is in good condition. A licensed roofer will assess whether a targeted repair will hold long-term or whether more widespread work is needed — and will give you an honest recommendation either way.",
+        a: "Yes, absolutely. Spot repairs are often the most cost-effective solution when the rest of the roof is in good condition. A local roofer will assess whether a targeted repair will hold long-term or whether more widespread work is needed — and will give you an honest recommendation either way.",
       },
       {
         q: "How long does a typical roof repair take?",
@@ -93,7 +93,7 @@ export const services: ServiceData[] = [
       "Full roof replacements with premium materials and a long-term workmanship warranty.",
     description: [
       "Most asphalt shingle roofs in Ontario last between 20 and 30 years, depending on installation quality, ventilation, and maintenance. When repairs become frequent, costs start adding up, or your roof is simply at the end of its lifespan, a full replacement is the smarter long-term investment. A new roof improves your home's curb appeal, energy efficiency, and resale value — often paying for itself when you sell.",
-      "LocalRoofer.ca works with licensed GTA roofing contractors who specialize in full tear-offs and replacements. We use premium materials rated for Ontario's harsh winters — including impact-resistant shingles, proper underlayment, ice and water shield along eaves and valleys, and ridge ventilation systems that prevent ice dams and extend the life of your new roof.",
+      "LocalRoofer.ca works with local GTA roofing contractors who specialize in full tear-offs and replacements. We use premium materials rated for Ontario's harsh winters — including impact-resistant shingles, proper underlayment, ice and water shield along eaves and valleys, and ridge ventilation systems that prevent ice dams and extend the life of your new roof.",
       "Our contractors will walk you through material options, colour choices, and warranty terms before any work begins. From a standard three-tab shingle replacement to architectural shingles, metal roofing, or a flat roof system, we'll match you with the right contractor for your home and budget.",
     ],
     benefits: [
@@ -222,16 +222,16 @@ export const services: ServiceData[] = [
     slug: "emergency-roofing",
     name: "Emergency Roofing",
     tagline:
-      "Rapid response for active leaks, storm damage, and fallen debris — 7 days a week.",
+      "Rapid response for active leaks, storm damage, and fallen debris — 24/7.",
     description: [
       "Roofing emergencies don't wait for business hours. A tree branch through your roof, a sudden active leak during a rainstorm, or a section of shingles torn off by high winds can leave your home exposed and your belongings at risk within hours. In these situations, you need a contractor who can respond the same day — not someone who'll call you back next week.",
-      "LocalRoofer.ca has a network of GTA roofing contractors available for emergency calls 7 days a week. Emergency service typically includes an immediate tarping or temporary patch to stop water ingress, followed by a full damage assessment and written quote for permanent repairs. Most emergency calls are responded to within hours, not days.",
+      "LocalRoofer.ca has a network of GTA roofing contractors available for emergency calls 24/7. Emergency service typically includes an immediate tarping or temporary patch to stop water ingress, followed by a full damage assessment and written quote for permanent repairs. Most emergency calls are responded to within hours, not days.",
       "If your home has been damaged by a storm, fallen tree, or sudden structural failure, we also help document the damage for insurance claims. Our contractors are familiar with the process and can provide the reports and photos your insurer requires to process your claim quickly.",
     ],
     benefits: [
       "Same-day response for active leaks and storm damage",
       "Emergency tarping to stop water ingress immediately",
-      "Available 7 days a week including holidays",
+      "Available 24/7, including holidays",
       "Insurance documentation support and claim-ready reports",
       "Temporary repairs followed by permanent fix — no loose ends",
     ],

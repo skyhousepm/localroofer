@@ -176,12 +176,12 @@ export default function PartnerForm() {
             </select>
           </div>
           <div>
-            <Label htmlFor="licensed" required>Licensed &amp; Insured in Ontario?</Label>
+            <Label htmlFor="licensed" required>Insured &amp; WSIB-covered?</Label>
             <select id="licensed" name="licensed" required
               value={fields.licensed} onChange={handleChange} disabled={isLoading}
               className={fieldCls}>
               <option value="" disabled>Select one</option>
-              <option value="yes">Yes — fully licensed &amp; insured</option>
+              <option value="yes">Yes — insured &amp; WSIB-covered</option>
               <option value="no">Not yet</option>
               <option value="unsure">Not sure</option>
             </select>
