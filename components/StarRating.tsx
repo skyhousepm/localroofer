@@ -19,7 +19,7 @@ export default function StarRating({ rating, size = "md" }: StarRatingProps) {
           <Star
             key={star}
             size={sizePx}
-            className={filled || half ? "text-orange-400" : "text-slate-600"}
+            className={filled || half ? "text-amber-400" : "text-slate-300"}
             fill={filled ? "currentColor" : half ? "url(#half)" : "none"}
           />
         );

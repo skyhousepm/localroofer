@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { VIEWBOX, LOCAL, ROOFER, RIDGE, tones } from "@/components/Logo";
 
 export const alt = "LocalRoofer.ca — Toronto & GTA Roofing Contractors";
 export const size = { width: 1200, height: 630 };
@@ -18,14 +19,16 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0F172A",
+          background: "#172554",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", padding: "80px 80px 0" }}>
-          <div style={{ display: "flex", fontSize: 40, fontWeight: 800, color: "#fff" }}>
-            LocalRoofer<span style={{ color: "#F97316" }}>.ca</span>
-          </div>
+          <svg viewBox={VIEWBOX} width="240" height="61">
+            <path fill={tones.dark.local} d={LOCAL} />
+            <path fill={tones.dark.roofer} d={ROOFER} />
+            <path d={RIDGE} fill="none" stroke={tones.dark.ridge} strokeWidth="11" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
           <div
             style={{
               display: "flex",
@@ -45,7 +48,7 @@ export default function OpengraphImage() {
           </div>
         </div>
         <svg viewBox="0 0 1440 100" width="1200" height="84" preserveAspectRatio="none">
-          <path d={ROOFLINE} fill="#F97316" />
+          <path d={ROOFLINE} fill="#1E40AF" />
         </svg>
       </div>
     ),

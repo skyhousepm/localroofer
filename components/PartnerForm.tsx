@@ -5,8 +5,8 @@ import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { track } from "@vercel/analytics";
 
 const fieldCls =
-  "w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 " +
-  "placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F97316] " +
+  "w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 " +
+  "placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-trust-600 " +
   "focus:border-transparent transition text-sm disabled:opacity-50 disabled:cursor-not-allowed";
 
 function Label({
@@ -19,9 +19,9 @@ function Label({
   children: React.ReactNode;
 }) {
   return (
-    <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700 mb-1.5">
+    <label htmlFor={htmlFor} className="block text-sm font-medium text-slate-700 mb-1.5">
       {children}
-      {required && <span className="text-[#F97316] ml-0.5">*</span>}
+      {required && <span className="text-trust-700 ml-0.5">*</span>}
     </label>
   );
 }
@@ -94,20 +94,20 @@ export default function PartnerForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/80 border border-gray-100 p-10 text-center">
+      <div className="bg-white rounded-3xl border border-slate-200 p-10 text-center">
         <div className="flex justify-center mb-5">
           <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center">
             <CheckCircle className="w-8 h-8 text-green-500" strokeWidth={1.8} />
           </div>
         </div>
-        <h3 className="text-2xl font-extrabold text-[#0F172A] mb-2">Application Received!</h3>
-        <p className="text-gray-500 text-sm max-w-sm mx-auto mb-8 leading-relaxed">
+        <h3 className="text-2xl font-bold text-slate-900 mb-2">Application Received!</h3>
+        <p className="text-slate-600 text-sm max-w-sm mx-auto mb-8 leading-relaxed">
           Thanks for your interest in joining the LocalRoofer.ca network. We&apos;ll review your
           application and be in touch within 1–2 business days.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="text-sm text-[#F97316] hover:underline font-medium"
+          className="text-sm text-trust-700 hover:underline font-medium"
         >
           Submit another application
         </button>
@@ -116,7 +116,7 @@ export default function PartnerForm() {
   }
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/80 border border-gray-100 p-8 sm:p-10">
+    <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-10">
       <form onSubmit={handleSubmit} className="relative space-y-5" noValidate>
 
         {/* Name + Company */}
@@ -192,7 +192,7 @@ export default function PartnerForm() {
         <div>
           <Label htmlFor="message">
             Anything else?{" "}
-            <span className="text-gray-400 font-normal">(optional)</span>
+            <span className="text-slate-500 font-normal">(optional)</span>
           </Label>
           <textarea id="message" name="message" rows={4}
             placeholder="Tell us about your crew size, specialties, equipment, or anything that sets you apart..."
@@ -200,7 +200,7 @@ export default function PartnerForm() {
             className={`${fieldCls} resize-none`} />
         </div>
 
-        <div className="border-t border-gray-100 pt-2" />
+        <div className="border-t border-slate-200 pt-2" />
 
         {status === "error" && (
           <div className="flex items-start gap-3 bg-red-50 border border-red-100 text-red-700 rounded-xl px-4 py-3 text-sm">
@@ -210,7 +210,7 @@ export default function PartnerForm() {
         )}
 
         <button type="submit" disabled={isLoading}
-          className="w-full flex items-center justify-center gap-2 bg-[#F97316] hover:bg-[#EA6C0A] active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl text-base shadow-md shadow-[#F97316]/25 transition-all duration-150">
+          className="w-full flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl text-base transition-all duration-150">
           {isLoading ? (
             <><Loader2 className="w-4 h-4 animate-spin" /> Submitting…</>
           ) : (
@@ -218,9 +218,9 @@ export default function PartnerForm() {
           )}
         </button>
 
-        <p className="text-center text-xs text-gray-400 leading-relaxed">
+        <p className="text-center text-xs text-slate-500 leading-relaxed">
           We review all applications within{" "}
-          <span className="font-medium text-gray-500">1–2 business days</span>.
+          <span className="font-medium text-slate-600">1–2 business days</span>.
         </p>
         {/* Honeypot — hidden from people, bots tend to fill it in */}
         <div aria-hidden className="absolute -left-[9999px] w-px h-px overflow-hidden">

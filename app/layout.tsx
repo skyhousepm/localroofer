@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SITE_URL as BASE_URL } from "@/lib/site";
 
-const inter = Inter({ subsets: ["latin"] });
+const body = Open_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const heading = Poppins({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-heading", display: "swap" });
 
 
 export const metadata: Metadata = {
@@ -74,8 +75,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-CA">
-      <body className={`${inter.className} antialiased flex flex-col min-h-screen`}>
+    <html lang="en-CA" className={`${body.variable} ${heading.variable}`}>
+      <body className="font-sans antialiased flex flex-col min-h-screen">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

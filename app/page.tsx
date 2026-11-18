@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { ShieldCheck, BadgeDollarSign, Clock, Search, Star, CheckCircle2, Users } from "lucide-react";
+import {
+  ArrowRight, BrickWall, Check, ClipboardCheck, CloudLightning, Droplets, HandCoins, House, Layers,
+  MapPin, PhoneCall, ShieldCheck, Sun, Timer, Users, Wind, Wrench, type LucideIcon,
+} from "lucide-react";
 import QuoteForm from "@/components/QuoteForm";
 import SearchHero from "@/components/SearchHero";
 import ContractorCard from "@/components/ContractorCard";
 import { locations } from "@/lib/locations";
 import { services } from "@/lib/services";
 import { contractors } from "@/lib/contractors";
-import { CONTACT_EMAIL, PHONE_TEL, SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, PHONE_DISPLAY, PHONE_TEL, SITE_URL } from "@/lib/site";
+import { ctaButton, outlineButton } from "@/lib/ui";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -49,46 +53,41 @@ const jsonLd = {
   sameAs: [],
 };
 
-/* ── Trust badge data ─────────────────────────────────────────────── */
-const trustBadges = [
-  {
-    icon: ShieldCheck,
-    title: "Insured & WSIB-Covered",
-    desc: "We only refer roofers who carry liability insurance and hold a WSIB clearance certificate.",
-  },
-  {
-    icon: BadgeDollarSign,
-    title: "Free Estimates",
-    desc: "No cost, no obligation. Get an honest written quote before any work begins.",
-  },
-  {
-    icon: Clock,
-    title: "Fast Response",
-    desc: "We reply within hours, not days. Emergency calls answered 24/7.",
-  },
+/* ── Trust points ─────────────────────────────────────────────────── */
+const trustPoints = [
+  { icon: ShieldCheck, title: "Insured & WSIB-covered", desc: "We only refer roofers who carry liability insurance and a WSIB clearance certificate." },
+  { icon: HandCoins, title: "Free, no-obligation quotes", desc: "An honest written quote before any work begins. No fee to homeowners." },
+  { icon: Timer, title: "Fast response", desc: "We reply within hours, not days. Emergency calls answered 24/7." },
 ];
 
 /* ── How It Works steps ───────────────────────────────────────────── */
 const howItWorksSteps = [
   {
-    number: "1",
-    icon: Search,
-    title: "Tell Us About Your Roof",
+    title: "Tell us about your roof",
     desc: "Fill out the quote form with your city, roof type, and what you need done. It takes about a minute and costs nothing.",
   },
   {
-    number: "2",
-    icon: Star,
-    title: "We Match You Locally",
+    title: "We match you locally",
     desc: "We connect you with a local roofing contractor who works in your city and handles the kind of job you described.",
   },
   {
-    number: "3",
-    icon: CheckCircle2,
-    title: "Get Your Free Quote",
+    title: "Get your free quote",
     desc: "The roofer contacts you directly to arrange an estimate — expect a response within hours, no pressure, no obligation.",
   },
 ];
+
+/* ── An icon per service; anything new falls back to the wrench ──── */
+const serviceIcons: Record<string, LucideIcon> = {
+  "roof-repair": Wrench,
+  "roof-replacement": House,
+  "roof-inspection": ClipboardCheck,
+  "emergency-roofing": CloudLightning,
+  "flat-roof": Layers,
+  eavestroughs: Droplets,
+  skylights: Sun,
+  "attic-ventilation": Wind,
+  "chimney-flashing": BrickWall,
+};
 
 /* ── Roof types ───────────────────────────────────────────────────── */
 const roofTypes = [
@@ -107,16 +106,6 @@ const roofTypes = [
     desc: "TPO, EPDM, and modified bitumen flat roof systems are essential for garages, additions, and modern homes with low-slope designs. Proper drainage design and membrane selection are critical to surviving Ontario's freeze-thaw cycles and heavy snowfall seasons.",
     services: ["Flat Roof Services", "Roof Inspection", "Emergency Roofing"],
   },
-];
-
-/* ── Homepage stats ───────────────────────────────────────────────────
-   Derived from real site data only. Do not add contractor counts, review
-   totals, or average ratings here until they come from real listings. */
-const stats = [
-  { value: `${locations.length}`, label: "GTA Cities Covered" },
-  { value: `${services.length}`, label: "Roofing Services" },
-  { value: "Free", label: "Quote Requests" },
-  { value: "No Fee", label: "To Homeowners" },
 ];
 
 /* ── Homepage FAQ ─────────────────────────────────────────────────── */
@@ -147,6 +136,19 @@ const homepageFaq = [
   },
 ];
 
+/* ── Shared bits ──────────────────────────────────────────────────── */
+const container = "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8";
+
+function SectionHeading({ eyebrow, title, intro, center = true }: { eyebrow?: string; title: string; intro?: string; center?: boolean }) {
+  return (
+    <div className={`${center ? "text-center mx-auto" : ""} max-w-2xl mb-12`}>
+      {eyebrow && <p className="text-sm font-semibold text-trust-700 mb-2">{eyebrow}</p>}
+      <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3 text-balance">{title}</h2>
+      {intro && <p className="text-slate-600 text-lg leading-relaxed">{intro}</p>}
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════════════ */
 export default function HomePage() {
   return (
@@ -157,249 +159,162 @@ export default function HomePage() {
       />
 
       {/* ══ HERO ══════════════════════════════════════════════════════ */}
-      <section className="relative bg-[#0F172A] overflow-hidden">
-        {/* Subtle grid texture overlay */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
+      <section className="bg-trust-50 border-b border-trust-100">
+        <div className={`${container} py-14 sm:py-20 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center`}>
+          <div>
+            <p className="inline-flex items-center gap-2 text-sm font-semibold text-trust-700 bg-white border border-trust-200 px-3 py-1 rounded-full mb-6">
+              <MapPin className="w-4 h-4" aria-hidden />
+              Toronto &amp; the Greater Toronto Area
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-slate-900 leading-[1.1] tracking-tight mb-5 text-balance">
+              Find a trusted roofer in <span className="text-trust-700">Toronto &amp; the GTA</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8 max-w-xl">
+              Tell us about your roof and we&apos;ll connect you with an insured local roofing contractor. Free quotes, no obligation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <Link href="#quote" className={ctaButton}>
+                Get a Free Quote
+                <ArrowRight className="w-5 h-5" aria-hidden />
+              </Link>
+              <a href={`tel:${PHONE_TEL}`} className={outlineButton}>
+                <PhoneCall className="w-5 h-5" aria-hidden />
+                Call 24/7 · {PHONE_DISPLAY}
+              </a>
+            </div>
+            <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-700">
+              {["Insured & WSIB-covered", "No fee to homeowners", "Replies within hours"].map((t) => (
+                <li key={t} className="flex items-center gap-2">
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-green-600 text-white shrink-0">
+                    <Check className="w-3.5 h-3.5" strokeWidth={3} aria-hidden />
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Content */}
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center">
-          <span className="inline-block bg-[#F97316]/10 text-[#F97316] text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-6 border border-[#F97316]/20">
-            Toronto &amp; Greater Toronto Area
-          </span>
-
-          <h1 className="text-5xl sm:text-6xl font-extrabold text-white leading-tight tracking-tight mb-5 text-balance">
-            Find a Trusted Roofer<br className="hidden sm:block" />{" "}
-            in <span className="text-orange-500">Toronto & the GTA</span>
-          </h1>
-
-          <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tell us about your roof and we&apos;ll connect you with a local
-            roofing contractor. Free quotes, no obligation.
-          </p>
-
-          {/* Search box */}
-          <SearchHero />
-
-          {/* Secondary CTA */}
-          <div className="mt-6 flex items-center justify-center gap-4 flex-wrap">
-            <Link
-              href="#quote"
-              className="text-white/50 hover:text-white text-sm transition-colors underline underline-offset-4"
-            >
-              Or fill out our quick quote form
-            </Link>
-            <span className="text-white/20 hidden sm:block">·</span>
-            <Link
-              href="/partners"
-              className="text-orange-400 hover:text-orange-300 text-sm font-medium transition-colors"
-            >
-              Are you a roofer? Partner with us →
-            </Link>
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-[0_1px_2px_rgba(15,23,42,0.06)]">
+            <h2 className="text-xl font-bold text-slate-900 mb-1">Find roofers near you</h2>
+            <p className="text-sm text-slate-600 mb-6">Pick a service and your city to see local contractors.</p>
+            <SearchHero />
+            <p className="text-sm text-slate-600 mt-5 pt-5 border-t border-slate-100">
+              Would rather we do the matching?{" "}
+              <Link href="#quote" className="font-semibold text-trust-700 hover:underline underline-offset-4">
+                Send a quote request
+              </Link>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ══ TRUST BADGES ══════════════════════════════════════════════ */}
-      <section className="bg-slate-50 py-16 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {trustBadges.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex flex-col items-start gap-4 hover:shadow-md transition-shadow"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[#F97316]/10 flex items-center justify-center shrink-0">
-                <Icon className="w-6 h-6 text-[#F97316]" strokeWidth={1.8} />
+      {/* ══ TRUST STRIP ═══════════════════════════════════════════════ */}
+      <section className="bg-white border-b border-slate-200">
+        <div className={`${container} py-10 grid sm:grid-cols-3 gap-8`}>
+          {trustPoints.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="flex gap-4">
+              <div className="w-12 h-12 rounded-xl bg-trust-50 text-trust-700 flex items-center justify-center shrink-0">
+                <Icon className="w-6 h-6" strokeWidth={1.8} aria-hidden />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900 text-base mb-1">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <h3 className="font-semibold text-slate-900 mb-1">{title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ══ FEATURED CONTRACTORS / NETWORK ════════════════════════════ */}
-      <section className="bg-[#0F172A] py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          {contractors.length > 0 ? (
-            <>
-              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
-                <div>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
-                    Our Partner Roofers
-                  </h2>
-                  <p className="text-slate-400 text-base max-w-xl">
-                    Local roofing contractors in the LocalRoofer.ca network.
-                  </p>
-                </div>
-                <Link
-                  href="/find"
-                  className="text-orange-400 hover:text-orange-300 text-sm font-semibold transition-colors whitespace-nowrap"
-                >
-                  See all contractors →
-                </Link>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-                {[...contractors]
-                  .sort((a, b) => b.rating - a.rating)
-                  .slice(0, 3)
-                  .map((c) => (
-                    <ContractorCard key={c.slug} contractor={c} />
-                  ))}
-              </div>
-              <div className="text-center mt-8">
-                <Link
-                  href="/find"
-                  className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
-                >
-                  Browse All {contractors.length}{" "}
-                  {contractors.length === 1 ? "Contractor" : "Contractors"}
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </Link>
-              </div>
-            </>
-          ) : (
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="w-14 h-14 rounded-2xl bg-[#F97316]/10 flex items-center justify-center mx-auto mb-6">
-                <Users className="w-7 h-7 text-[#F97316]" strokeWidth={1.8} />
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-                We&apos;re Building Our Roofer Network
-              </h2>
-              <p className="text-slate-400 text-base leading-relaxed mb-8">
-                LocalRoofer.ca is onboarding local roofing contractors across Toronto
-                and the GTA. Homeowners can request a quote today and we&apos;ll connect
-                you with a local roofer directly — contractor profiles will appear here as
-                our network grows.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  href="#quote"
-                  className="inline-flex items-center justify-center gap-2 bg-[#F97316] hover:bg-orange-600 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors"
-                >
-                  Get a Free Quote
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </Link>
-                <Link
-                  href="/partners"
-                  className="inline-flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all"
-                >
-                  I&apos;m a Roofer — Join the Network
-                </Link>
-              </div>
-            </div>
-          )}
+      {/* ══ EMERGENCY BAND ════════════════════════════════════════════ */}
+      <section className="bg-cta-soft border-b border-orange-200">
+        <div className={`${container} py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4`}>
+          <div className="flex items-center gap-3">
+            <CloudLightning className="w-7 h-7 text-cta shrink-0" aria-hidden />
+            <p className="text-slate-900">
+              <span className="font-bold">Roof leaking right now?</span>{" "}
+              <span className="text-slate-700">Storm damage and active leaks are answered 24/7.</span>
+            </p>
+          </div>
+          <a href={`tel:${PHONE_TEL}`} className={`${ctaButton} py-3 text-sm whitespace-nowrap`}>
+            <PhoneCall className="w-4 h-4" aria-hidden />
+            Call {PHONE_DISPLAY}
+          </a>
         </div>
       </section>
 
       {/* ══ HOW IT WORKS ══════════════════════════════════════════════ */}
-      <section id="how-it-works" className="bg-white py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-              How It Works
-            </h2>
-            <p className="text-gray-500 text-base max-w-xl mx-auto">
-              Getting a free roofing quote through LocalRoofer.ca takes minutes — here's what happens next.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {howItWorksSteps.map(({ number, icon: Icon, title, desc }) => (
-              <div
-                key={number}
-                className="relative bg-slate-50 rounded-2xl border border-gray-100 p-8 flex flex-col items-start gap-5"
-              >
-                {/* Step number badge */}
-                <span className="absolute -top-4 left-6 w-8 h-8 rounded-full bg-[#F97316] text-white text-sm font-bold flex items-center justify-center shadow-md shadow-[#F97316]/30">
-                  {number}
+      <section id="how-it-works" className="bg-white py-20 scroll-mt-28">
+        <div className={container}>
+          <SectionHeading
+            eyebrow="How it works"
+            title="A free quote in three steps"
+            intro="Getting a roofing quote through LocalRoofer.ca takes minutes — here's what happens next."
+          />
+          <ol className="grid md:grid-cols-3 gap-6">
+            {howItWorksSteps.map(({ title, desc }, i) => (
+              <li key={title} className="relative rounded-2xl border border-slate-200 p-7">
+                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-trust-700 text-white font-heading font-bold mb-5">
+                  {i + 1}
                 </span>
-                <div className="w-12 h-12 rounded-xl bg-[#F97316]/10 flex items-center justify-center shrink-0">
-                  <Icon className="w-6 h-6 text-[#F97316]" strokeWidth={1.8} />
-                </div>
-                <div>
-                  <h3 className="font-bold text-[#0F172A] text-base mb-2">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
-                </div>
-              </div>
+                <h3 className="font-semibold text-lg text-slate-900 mb-2">{title}</h3>
+                <p className="text-slate-600 leading-relaxed">{desc}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* ══ SERVICES GRID ═════════════════════════════════════════════ */}
-      <section className="bg-slate-50 py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-              Our Roofing Services
-            </h2>
-            <p className="text-gray-500 text-base max-w-2xl mx-auto">
-              From a single missing shingle to a complete roof replacement, LocalRoofer.ca connects GTA homeowners with the right local contractor for every job.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((service) => (
-              <div
-                key={service.slug}
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex flex-col gap-4 hover:shadow-md hover:border-[#F97316]/30 transition-all"
-              >
-                <div>
-                  <h3 className="font-bold text-[#0F172A] text-base mb-2">{service.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">{service.tagline}</p>
-                </div>
+      {/* ══ SERVICES ══════════════════════════════════════════════════ */}
+      <section className="bg-slate-50 py-20 border-y border-slate-200">
+        <div className={container}>
+          <SectionHeading
+            eyebrow="Services"
+            title="Every roofing job, one local network"
+            intro="From a single missing shingle to a complete roof replacement, we connect GTA homeowners with the right local contractor for the job."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service) => {
+              const Icon = serviceIcons[service.slug] ?? Wrench;
+              return (
                 <Link
+                  key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="mt-auto text-[#F97316] font-semibold text-sm hover:underline"
+                  className="group bg-white rounded-2xl border border-slate-200 hover:border-trust-600 p-6 flex flex-col gap-4 transition-colors"
                 >
-                  Learn more &rarr;
+                  <div className="flex items-center gap-3">
+                    <div className="w-11 h-11 rounded-xl bg-trust-50 text-trust-700 flex items-center justify-center shrink-0 group-hover:bg-trust-700 group-hover:text-white transition-colors">
+                      <Icon className="w-5 h-5" strokeWidth={1.8} aria-hidden />
+                    </div>
+                    <h3 className="font-semibold text-lg text-slate-900">{service.name}</h3>
+                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">{service.tagline}</p>
+                  <span className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-trust-700">
+                    Learn more
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </span>
                 </Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ══ ROOF TYPES ════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-              Roof Types We Service
-            </h2>
-            <p className="text-gray-500 text-base max-w-xl mx-auto">
-              We handle quote requests for every major residential roofing system used across the GTA.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <section className="bg-white py-20">
+        <div className={container}>
+          <SectionHeading
+            eyebrow="Roof types"
+            title="Shingle, metal and flat roofs"
+            intro="We handle quote requests for every major residential roofing system used across the GTA."
+          />
+          <div className="grid md:grid-cols-3 gap-6">
             {roofTypes.map((rt) => (
-              <div
-                key={rt.title}
-                className="bg-slate-50 rounded-2xl border border-gray-100 p-8 flex flex-col gap-5"
-              >
-                <div className="w-12 h-1 rounded-full bg-[#F97316]" />
-                <div>
-                  <h3 className="font-bold text-[#0F172A] text-lg mb-3">{rt.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{rt.desc}</p>
-                </div>
+              <div key={rt.title} className="rounded-2xl border border-slate-200 p-7 flex flex-col gap-4">
+                <h3 className="font-semibold text-xl text-slate-900">{rt.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{rt.desc}</p>
                 <div className="mt-auto flex flex-wrap gap-2">
                   {rt.services.map((s) => (
-                    <span
-                      key={s}
-                      className="text-xs bg-[#F97316]/10 text-[#F97316] font-medium px-2.5 py-1 rounded-full border border-[#F97316]/20"
-                    >
+                    <span key={s} className="text-xs font-semibold text-trust-900 bg-trust-50 border border-trust-100 px-2.5 py-1 rounded-full">
                       {s}
                     </span>
                   ))}
@@ -410,36 +325,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══ STATS STRIP ═══════════════════════════════════════════════ */}
-      <section className="bg-[#0F172A] py-16 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
-          {stats.map(({ value, label }) => (
-            <div key={label} className="flex flex-col items-center gap-2">
-              <span className="text-4xl font-extrabold text-[#F97316] tracking-tight">{value}</span>
-              <span className="text-white/60 text-sm font-medium uppercase tracking-wide">{label}</span>
+      {/* ══ ROOFER NETWORK ════════════════════════════════════════════ */}
+      <section className="bg-trust-950 py-20">
+        <div className={container}>
+          {contractors.length > 0 ? (
+            <>
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+                <div>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">Our partner roofers</h2>
+                  <p className="text-white/70 text-lg max-w-xl">Local roofing contractors in the LocalRoofer.ca network.</p>
+                </div>
+                <Link href="/find" className="text-trust-200 hover:text-white font-semibold transition-colors whitespace-nowrap">
+                  See all contractors →
+                </Link>
+              </div>
+              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+                {[...contractors]
+                  .sort((a, b) => b.rating - a.rating)
+                  .slice(0, 3)
+                  .map((c) => (
+                    <ContractorCard key={c.slug} contractor={c} />
+                  ))}
+              </div>
+            </>
+          ) : (
+            <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+              <div className="flex gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-white/10 text-trust-200 flex items-center justify-center shrink-0">
+                  <Users className="w-7 h-7" strokeWidth={1.8} aria-hidden />
+                </div>
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">We&apos;re building our roofer network</h2>
+                  <p className="text-white/75 leading-relaxed max-w-2xl">
+                    LocalRoofer.ca is onboarding local roofing contractors across Toronto and the GTA. Request a quote today and
+                    we&apos;ll connect you with a local roofer directly — contractor profiles will appear here as the network grows.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
+                <Link href="#quote" className={ctaButton}>
+                  Get a Free Quote
+                </Link>
+                <Link
+                  href="/partners"
+                  className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+                >
+                  I&apos;m a roofer — join the network
+                </Link>
+              </div>
             </div>
-          ))}
+          )}
         </div>
       </section>
 
       {/* ══ AREAS WE SERVE ════════════════════════════════════════════ */}
-      <section className="bg-slate-50 py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-              Areas We Serve Across the GTA
-            </h2>
-            <p className="text-gray-500 text-base max-w-xl mx-auto">
-              Local roofers available in all of these communities — click your city for local roofing information.
-            </p>
-          </div>
+      <section className="bg-slate-50 py-20 border-b border-slate-200">
+        <div className={container}>
+          <SectionHeading
+            eyebrow="Service area"
+            title={`Local roofers in ${locations.length} GTA communities`}
+            intro="Pick your city for local roofing information, prices and permits."
+          />
           <div className="flex flex-wrap justify-center gap-3">
             {locations.map((city) => (
               <Link
                 key={city.slug}
                 href={`/locations/${city.slug}`}
-                className="inline-flex items-center px-5 py-2.5 rounded-full border border-gray-200 bg-white text-gray-700 text-sm font-medium hover:border-[#F97316]/50 hover:text-[#F97316] hover:bg-[#F97316]/5 transition-all shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-800 font-medium hover:border-trust-600 hover:text-trust-700 transition-colors"
               >
+                <MapPin className="w-4 h-4 text-slate-400" aria-hidden />
                 {city.name}
               </Link>
             ))}
@@ -448,38 +402,19 @@ export default function HomePage() {
       </section>
 
       {/* ══ FAQ ═══════════════════════════════════════════════════════ */}
-      <section id="faq" className="bg-white py-20 px-4">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-gray-500 text-base max-w-xl mx-auto">
-              Answers to the questions GTA homeowners ask us most often.
-            </p>
-          </div>
-          <div className="space-y-3">
+      <section id="faq" className="bg-white py-20 scroll-mt-28">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <SectionHeading eyebrow="FAQ" title="Questions homeowners ask us" />
+          <div className="divide-y divide-slate-200 border-y border-slate-200">
             {homepageFaq.map(({ q, a }) => (
-              <details
-                key={q}
-                className="group bg-slate-50 border border-gray-100 rounded-2xl overflow-hidden"
-              >
-                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-semibold text-[#0F172A] text-base hover:text-[#F97316] transition-colors">
+              <details key={q} className="group">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none py-5 font-semibold text-lg text-slate-900 hover:text-trust-700 transition-colors">
                   {q}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-[#F97316] shrink-0 transition-transform duration-200 group-open:rotate-180"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-trust-50 text-trust-700 shrink-0 transition-transform duration-200 group-open:rotate-45 text-xl leading-none" aria-hidden>
+                    +
+                  </span>
                 </summary>
-                <div className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
-                  {a}
-                </div>
+                <p className="pb-6 text-slate-600 leading-relaxed">{a}</p>
               </details>
             ))}
           </div>
@@ -487,16 +422,34 @@ export default function HomePage() {
       </section>
 
       {/* ══ QUOTE FORM ════════════════════════════════════════════════ */}
-      <section id="quote" className="bg-white py-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-3 tracking-tight">
-              Request Your Free Quote
-            </h2>
-            <p className="text-gray-500 text-base max-w-lg mx-auto">
-              Fill out the form below and a local roofing expert will be in touch
-              within a few hours — no pressure, no obligation.
+      <section id="quote" className="bg-trust-50 py-20 border-t border-trust-100 scroll-mt-28">
+        <div className={`${container} grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-14 items-start`}>
+          <div className="lg:sticky lg:top-32">
+            <p className="text-sm font-semibold text-trust-700 mb-2">Free quote</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4 text-balance">Request your free roofing quote</h2>
+            <p className="text-slate-600 text-lg leading-relaxed mb-8">
+              Fill out the form and a local roofing contractor will be in touch within a few hours — no pressure, no obligation.
             </p>
+            <ul className="space-y-4 mb-8">
+              {[
+                "One short form — about a minute",
+                "Matched with an insured, WSIB-covered local roofer",
+                "A written quote before any work begins",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-3 text-slate-800">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white shrink-0 mt-0.5">
+                    <Check className="w-4 h-4" strokeWidth={3} aria-hidden />
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div className="rounded-xl bg-white border border-trust-100 p-5">
+              <p className="text-sm text-slate-600 mb-1">Prefer to talk? We answer 24/7.</p>
+              <a href={`tel:${PHONE_TEL}`} className="font-heading text-2xl font-bold text-trust-700 hover:text-trust-900 transition-colors">
+                {PHONE_DISPLAY}
+              </a>
+            </div>
           </div>
           <QuoteForm />
         </div>

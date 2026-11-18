@@ -37,7 +37,7 @@ function buildPartnerEmailHtml(p: PartnerPayload, timestamp: string): string {
         <tr>
           <td style="background:#0F172A;border-radius:12px 12px 0 0;padding:28px 32px;">
             <p style="margin:0;font-size:22px;font-weight:800;color:#fff;">
-              Local<span style="color:#F97316;">Roofer</span><span style="color:rgba(255,255,255,0.4)">.ca</span>
+              <img src="https://www.localroofer.ca/brand/logo-white.png" width="160" height="40" alt="localroofer" style="display:block;border:0;" />
             </p>
             <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.5);">New Partner Inquiry</p>
           </td>

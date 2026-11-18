@@ -7,12 +7,12 @@ import { services } from "@/lib/services";
 import { locations } from "@/lib/locations";
 
 const serviceOptions = [
-  { value: "", label: "All Services" },
+  { value: "", label: "Any roofing service" },
   ...services.map((s) => ({ value: s.slug, label: s.name })),
 ];
 
 const cityOptions = [
-  { value: "", label: "All Cities" },
+  { value: "", label: "Anywhere in the GTA" },
   ...locations.map((l) => ({ value: l.slug, label: l.name })),
 ];
 
@@ -33,52 +33,42 @@ export default function SearchHero() {
     if (e.key === "Enter") handleSearch();
   }
 
+  const selectClass =
+    "w-full bg-white text-slate-900 text-base rounded-lg px-4 py-3 border border-slate-300 hover:border-slate-400 focus:outline-none focus:border-trust-600 focus:ring-2 focus:ring-trust-600/20 cursor-pointer transition-colors";
+
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="bg-white/8 backdrop-blur border border-white/15 rounded-2xl p-3 flex flex-col sm:flex-row gap-2">
-        {/* Service select */}
-        <select
-          value={service}
-          onChange={(e) => setService(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="flex-1 bg-navy/80 text-white text-sm rounded-xl px-4 py-3 border border-white/10 focus:outline-none focus:border-orange-500 cursor-pointer appearance-none"
-          aria-label="Select service"
-        >
-          {serviceOptions.map((o) => (
-            <option key={o.value} value={o.value} className="bg-slate-900">
-              {o.label}
-            </option>
-          ))}
-        </select>
+    <div className="w-full">
+      <div className="grid gap-4">
+        <label className="block">
+          <span className="block text-sm font-semibold text-slate-800 mb-1.5">What do you need?</span>
+          <select value={service} onChange={(e) => setService(e.target.value)} onKeyDown={handleKeyDown} className={selectClass}>
+            {serviceOptions.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </label>
 
-        {/* City select */}
-        <select
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="flex-1 bg-navy/80 text-white text-sm rounded-xl px-4 py-3 border border-white/10 focus:outline-none focus:border-orange-500 cursor-pointer appearance-none"
-          aria-label="Select city"
-        >
-          {cityOptions.map((o) => (
-            <option key={o.value} value={o.value} className="bg-slate-900">
-              {o.label}
-            </option>
-          ))}
-        </select>
+        <label className="block">
+          <span className="block text-sm font-semibold text-slate-800 mb-1.5">Where is the property?</span>
+          <select value={city} onChange={(e) => setCity(e.target.value)} onKeyDown={handleKeyDown} className={selectClass}>
+            {cityOptions.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </label>
 
-        {/* Search button */}
         <button
           onClick={handleSearch}
-          className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 active:scale-[0.98] text-white font-bold text-sm px-6 py-3 rounded-xl transition-all whitespace-nowrap"
+          className="flex items-center justify-center gap-2 bg-trust-700 hover:bg-trust-900 text-white font-semibold text-base px-6 py-3.5 rounded-lg transition-colors cursor-pointer"
         >
-          <Search size={16} />
-          Find Roofers
+          <Search size={18} aria-hidden />
+          Find Local Roofers
         </button>
       </div>
-
-      <p className="text-center text-white/40 text-xs mt-3">
-        Serving Toronto &amp; the GTA · Free quotes, no obligation
-      </p>
     </div>
   );
 }

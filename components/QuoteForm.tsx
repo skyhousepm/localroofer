@@ -7,9 +7,9 @@ import { locations } from "@/lib/locations";
 
 /* ── Shared field style ───────────────────────────────────────────── */
 const fieldCls =
-  "w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 " +
-  "placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F97316] " +
-  "focus:border-transparent transition text-sm disabled:opacity-50 disabled:cursor-not-allowed";
+  "w-full px-4 py-3 rounded-lg border border-slate-400 bg-white text-slate-900 " +
+  "placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-trust-600 " +
+  "focus:border-transparent transition text-base disabled:opacity-50 disabled:cursor-not-allowed";
 
 /* ── Label ────────────────────────────────────────────────────────── */
 function Label({
@@ -22,9 +22,9 @@ function Label({
   children: React.ReactNode;
 }) {
   return (
-    <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700 mb-1.5">
+    <label htmlFor={htmlFor} className="block text-sm font-medium text-slate-700 mb-1.5">
       {children}
-      {required && <span className="text-[#F97316] ml-0.5">*</span>}
+      {required && <span className="text-cta ml-0.5">*</span>}
     </label>
   );
 }
@@ -119,20 +119,20 @@ export default function QuoteForm({
   /* ── Success state ──────────────────────────────────────────────── */
   if (status === "success") {
     return (
-      <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/80 border border-gray-100 p-10 text-center">
+      <div className="bg-white rounded-2xl border border-slate-200 p-10 text-center">
         <div className="flex justify-center mb-5">
           <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center">
             <CheckCircle className="w-8 h-8 text-green-500" strokeWidth={1.8} />
           </div>
         </div>
-        <h3 className="text-2xl font-extrabold text-[#0F172A] mb-2">Quote Request Sent!</h3>
-        <p className="text-gray-500 text-sm max-w-sm mx-auto mb-8 leading-relaxed">
+        <h3 className="text-2xl font-bold text-slate-900 mb-2">Quote Request Sent!</h3>
+        <p className="text-slate-600 text-sm max-w-sm mx-auto mb-8 leading-relaxed">
           Thanks! We&apos;ve received your request and a local roofing expert will be
           in touch within a few hours.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="text-sm text-[#F97316] hover:underline font-medium"
+          className="text-sm text-trust-700 hover:underline font-semibold"
         >
           Submit another request
         </button>
@@ -142,7 +142,7 @@ export default function QuoteForm({
 
   /* ── Form ───────────────────────────────────────────────────────── */
   return (
-    <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/80 border border-gray-100 p-8 sm:p-10">
+    <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
       <form onSubmit={handleSubmit} className="relative space-y-5" noValidate>
 
         {/* Full Name */}
@@ -295,7 +295,7 @@ export default function QuoteForm({
         <div>
           <Label htmlFor="message">
             Message{" "}
-            <span className="text-gray-400 font-normal">(optional)</span>
+            <span className="text-slate-500 font-normal">(optional)</span>
           </Label>
           <textarea
             id="message"
@@ -309,7 +309,7 @@ export default function QuoteForm({
           />
         </div>
 
-        <div className="border-t border-gray-100 pt-2" />
+        <div className="border-t border-slate-200 pt-2" />
 
         {/* Error banner */}
         {status === "error" && (
@@ -323,7 +323,7 @@ export default function QuoteForm({
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full flex items-center justify-center gap-2 bg-[#F97316] hover:bg-[#EA6C0A] active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 text-white font-bold py-4 rounded-xl text-base shadow-md shadow-[#F97316]/25 transition-all duration-150"
+          className="w-full flex items-center justify-center gap-2 bg-cta hover:bg-cta-hover active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 text-white font-semibold py-4 rounded-lg text-base transition-all duration-150 cursor-pointer"
         >
           {isLoading ? (
             <>
@@ -335,9 +335,9 @@ export default function QuoteForm({
           )}
         </button>
 
-        <p className="text-center text-xs text-gray-400 leading-relaxed">
+        <p className="text-center text-xs text-slate-500 leading-relaxed">
           No spam. No obligation.{" "}
-          <span className="font-medium text-gray-500">We typically respond within a few hours.</span>
+          <span className="font-medium text-slate-600">We typically respond within a few hours.</span>
         </p>
         {/* Honeypot — hidden from people, bots tend to fill it in */}
         <div aria-hidden className="absolute -left-[9999px] w-px h-px overflow-hidden">

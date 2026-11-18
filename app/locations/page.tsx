@@ -4,6 +4,7 @@ import { MapPin } from "lucide-react";
 import { locations } from "@/lib/locations";
 import QuoteForm from "@/components/QuoteForm";
 import { SITE_URL } from "@/lib/site";
+import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Roofing Service Areas in Toronto & the GTA",
@@ -17,41 +18,18 @@ export default function LocationsPage() {
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────────── */}
-      <section className="relative bg-[#0F172A] overflow-hidden">
-        {/* Grid texture */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 text-center">
-          {/* Breadcrumb */}
-          <nav className="flex items-center justify-center gap-2 text-sm text-white/40 mb-6">
-            <Link href="/" className="hover:text-white/70 transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-white/60">Locations</span>
-          </nav>
-
-          <span className="inline-block bg-[#F97316]/10 text-[#F97316] text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-[#F97316]/20">
-            Toronto &amp; the GTA
-          </span>
-
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
-            Areas We Serve
-          </h1>
-
-          <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
-            We connect homeowners with local roofers in {locations.length} cities
-            across Toronto and the Greater Toronto Area. Pick your city to see common local
-            roofing issues and request a free estimate.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        crumbs={[{ label: "Locations" }]}
+        eyebrow="Toronto & the GTA"
+        title="Areas We Serve"
+        cta={{ href: "/#quote", label: "Get a Free Quote" }}
+      >
+        <p>
+          We connect homeowners with local roofers in {locations.length} cities
+          across Toronto and the Greater Toronto Area. Pick your city to see common local
+          roofing issues and request a free estimate.
+        </p>
+      </PageHero>
 
       {/* ── City grid ─────────────────────────────────────────────── */}
       <section className="bg-slate-50 py-16 px-4">
@@ -60,18 +38,18 @@ export default function LocationsPage() {
             <Link
               key={city.slug}
               href={`/locations/${city.slug}`}
-              className="group bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md hover:border-[#F97316]/30 transition-all"
+              className="group bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md hover:border-trust-200 transition-all"
             >
               <div className="flex items-center gap-3 mb-3">
-                <span className="w-9 h-9 rounded-xl bg-[#F97316]/10 flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5 text-[#F97316]" />
+                <span className="w-9 h-9 rounded-xl bg-trust-50 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-trust-700" />
                 </span>
-                <h2 className="text-lg font-bold text-[#0F172A] group-hover:text-[#F97316] transition-colors">
+                <h2 className="text-lg font-bold text-slate-900 group-hover:text-trust-700 transition-colors">
                   {city.name}
                 </h2>
               </div>
-              <p className="text-sm text-gray-500 leading-relaxed mb-4">{city.serviceNote}</p>
-              <span className="text-sm font-semibold text-[#F97316]">
+              <p className="text-sm text-slate-600 leading-relaxed mb-4">{city.serviceNote}</p>
+              <span className="text-sm font-semibold text-trust-700">
                 Roofing in {city.name} →
               </span>
             </Link>
@@ -83,10 +61,10 @@ export default function LocationsPage() {
       <section id="quote" className="bg-white py-20 px-4">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-3 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 tracking-tight">
               Don&apos;t See Your City?
             </h2>
-            <p className="text-gray-500 text-base max-w-lg mx-auto">
+            <p className="text-slate-600 text-base max-w-lg mx-auto">
               Send us your details anyway — if a partner roofer covers your area, we&apos;ll
               connect you. No cost, no obligation.
             </p>

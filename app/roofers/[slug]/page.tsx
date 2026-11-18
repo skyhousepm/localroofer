@@ -60,7 +60,7 @@ function StarDisplay({ rating }: { rating: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
-          className={`w-4 h-4 ${i < filled ? "text-[#F97316] fill-[#F97316]" : "text-gray-300 fill-gray-200"}`}
+          className={`w-4 h-4 ${i < filled ? "text-amber-400 fill-amber-400" : "text-slate-300 fill-slate-200"}`}
           strokeWidth={0}
         />
       ))}
@@ -75,7 +75,7 @@ function ReviewStars({ rating }: { rating: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
-          className={`w-3.5 h-3.5 ${i < filled ? "text-[#F97316] fill-[#F97316]" : "text-gray-200 fill-gray-200"}`}
+          className={`w-3.5 h-3.5 ${i < filled ? "text-amber-400 fill-amber-400" : "text-slate-200 fill-slate-200"}`}
           strokeWidth={0}
         />
       ))}
@@ -95,7 +95,7 @@ function VerificationBadge({
       className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border ${
         active
           ? "bg-green-50 text-green-700 border-green-200"
-          : "bg-gray-50 text-gray-400 border-gray-200"
+          : "bg-slate-50 text-slate-500 border-slate-200"
       }`}
     >
       <BadgeCheck className="w-3.5 h-3.5" strokeWidth={2} />
@@ -119,16 +119,16 @@ export default async function ContractorProfilePage({
   return (
     <>
       {/* ── Profile Hero ──────────────────────────────────────────── */}
-      <section className="bg-[#0F172A] border-b border-white/10">
+      <section className="bg-trust-50 border-b border-trust-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-white/40 mb-6">
-            <Link href="/" className="hover:text-white/70 transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
+            <Link href="/" className="hover:text-trust-700 transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/find" className="hover:text-white/70 transition-colors">Find a Roofer</Link>
+            <Link href="/find" className="hover:text-trust-700 transition-colors">Find a Roofer</Link>
             <span>/</span>
-            <span className="text-white/60">{c.name}</span>
+            <span className="text-slate-900 font-medium">{c.name}</span>
           </nav>
 
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
@@ -137,39 +137,39 @@ export default async function ContractorProfilePage({
             <div className="flex-1">
               {/* Logo placeholder + name */}
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#F97316]/10 border border-[#F97316]/20 flex items-center justify-center shrink-0">
-                  <span className="text-[#F97316] text-2xl font-extrabold">
+                <div className="w-16 h-16 rounded-2xl bg-white border border-trust-100 flex items-center justify-center shrink-0">
+                  <span className="text-trust-700 text-2xl font-bold">
                     {c.name.charAt(0)}
                   </span>
                 </div>
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                     {c.name}
                   </h1>
                   <div className="flex items-center gap-2 mt-1">
-                    <MapPin className="w-3.5 h-3.5 text-white/40" />
-                    <span className="text-sm text-white/50">{c.city}, ON</span>
+                    <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                    <span className="text-sm text-slate-600">{c.city}, ON</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-white/60 text-base mb-5 max-w-xl leading-relaxed">
+              <p className="text-slate-600 text-base mb-5 max-w-xl leading-relaxed">
                 {c.tagline}
               </p>
 
               {/* Rating row */}
               <div className="flex flex-wrap items-center gap-4 mb-6">
-                <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-4 py-2">
-                  <span className="text-2xl font-extrabold text-white">{c.rating}</span>
+                <div className="flex items-center gap-2 bg-white border border-trust-100 rounded-xl px-4 py-2">
+                  <span className="text-2xl font-bold text-slate-900">{c.rating}</span>
                   <div>
                     <StarDisplay rating={c.rating} />
-                    <span className="text-xs text-white/40 mt-0.5 block">
+                    <span className="text-xs text-slate-500 mt-0.5 block">
                       {c.reviewCount} reviews
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-white/60 text-sm">
-                  <CalendarDays className="w-4 h-4 text-white/40" />
+                <div className="flex items-center gap-2 text-slate-600 text-sm">
+                  <CalendarDays className="w-4 h-4 text-slate-500" />
                   {yearsInBusiness} years in business
                 </div>
               </div>
@@ -184,23 +184,23 @@ export default async function ContractorProfilePage({
             </div>
 
             {/* Right — CTA card */}
-            <div className="lg:w-72 bg-white rounded-2xl p-6 shadow-xl">
-              <p className="text-sm text-gray-500 mb-1">Get a quote from</p>
-              <p className="font-extrabold text-[#0F172A] text-lg mb-4 leading-tight">{c.name}</p>
+            <div className="lg:w-72 bg-white rounded-2xl p-6 border border-slate-200">
+              <p className="text-sm text-slate-600 mb-1">Get a quote from</p>
+              <p className="font-bold text-slate-900 text-lg mb-4 leading-tight">{c.name}</p>
               <a
                 href={`tel:${c.phone.replace(/\D/g, "")}`}
-                className="flex items-center justify-center gap-2 w-full border-2 border-[#F97316] text-[#F97316] font-bold py-3 rounded-xl hover:bg-[#F97316] hover:text-white transition-all mb-3 text-sm"
+                className="flex items-center justify-center gap-2 w-full border-2 border-trust-700 text-trust-700 font-semibold py-3 rounded-lg hover:bg-trust-700 hover:text-white transition-colors mb-3 text-sm"
               >
                 <Phone className="w-4 h-4" />
                 {c.phone}
               </a>
               <Link
                 href="#quote"
-                className="flex items-center justify-center gap-2 w-full bg-[#F97316] hover:bg-[#EA6C0A] text-white font-bold py-3 rounded-xl transition-colors text-sm"
+                className="flex items-center justify-center gap-2 w-full bg-cta hover:bg-cta-hover text-white font-semibold py-3 rounded-lg transition-colors text-sm"
               >
                 Request a Free Quote
               </Link>
-              <p className="text-center text-xs text-gray-400 mt-3">
+              <p className="text-center text-xs text-slate-500 mt-3">
                 Typically responds within a few hours
               </p>
             </div>
@@ -217,12 +217,12 @@ export default async function ContractorProfilePage({
 
             {/* About */}
             <div>
-              <h2 className="text-xl font-extrabold text-[#0F172A] mb-4">
+              <h2 className="text-xl font-bold text-slate-900 mb-4">
                 About {c.name}
               </h2>
               <div className="space-y-4">
                 {c.description.map((para, i) => (
-                  <p key={i} className="text-gray-600 leading-relaxed text-sm">
+                  <p key={i} className="text-slate-600 leading-relaxed text-sm">
                     {para}
                   </p>
                 ))}
@@ -231,17 +231,17 @@ export default async function ContractorProfilePage({
 
             {/* Highlights */}
             <div>
-              <h2 className="text-xl font-extrabold text-[#0F172A] mb-4">
+              <h2 className="text-xl font-bold text-slate-900 mb-4">
                 Why Choose {c.name}
               </h2>
               <ul className="space-y-3">
                 {c.highlights.map((h) => (
                   <li key={h} className="flex items-start gap-3">
                     <CheckCircle2
-                      className="w-5 h-5 text-[#F97316] shrink-0 mt-0.5"
+                      className="w-5 h-5 text-trust-700 shrink-0 mt-0.5"
                       strokeWidth={2}
                     />
-                    <span className="text-gray-700 text-sm leading-snug">{h}</span>
+                    <span className="text-slate-700 text-sm leading-snug">{h}</span>
                   </li>
                 ))}
               </ul>
@@ -250,13 +250,13 @@ export default async function ContractorProfilePage({
             {/* Reviews */}
             <div>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-extrabold text-[#0F172A]">
+                <h2 className="text-xl font-bold text-slate-900">
                   Homeowner Reviews
                 </h2>
                 <div className="flex items-center gap-2">
                   <StarDisplay rating={c.rating} />
-                  <span className="text-sm font-bold text-gray-900">{c.rating}/10</span>
-                  <span className="text-sm text-gray-400">({c.reviewCount} reviews)</span>
+                  <span className="text-sm font-bold text-slate-900">{c.rating}/10</span>
+                  <span className="text-sm text-slate-500">({c.reviewCount} reviews)</span>
                 </div>
               </div>
 
@@ -264,18 +264,18 @@ export default async function ContractorProfilePage({
                 {c.reviews.map((r, i) => (
                   <div
                     key={i}
-                    className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm"
+                    className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full bg-[#0F172A] flex items-center justify-center shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-trust-700 flex items-center justify-center shrink-0">
                           <span className="text-white text-sm font-bold">
                             {r.author.charAt(0)}
                           </span>
                         </div>
                         <div>
-                          <p className="font-semibold text-gray-900 text-sm">{r.author}</p>
-                          <p className="text-xs text-gray-400 flex items-center gap-1">
+                          <p className="font-semibold text-slate-900 text-sm">{r.author}</p>
+                          <p className="text-xs text-slate-500 flex items-center gap-1">
                             <MapPin className="w-3 h-3" />
                             {r.city}
                           </p>
@@ -284,11 +284,11 @@ export default async function ContractorProfilePage({
                       <div className="text-right">
                         <div className="flex items-center gap-1 justify-end">
                           <ReviewStars rating={r.rating} />
-                          <span className="text-xs font-bold text-gray-700 ml-1">
+                          <span className="text-xs font-bold text-slate-700 ml-1">
                             {r.rating}/10
                           </span>
                         </div>
-                        <p className="text-xs text-gray-400 mt-0.5">
+                        <p className="text-xs text-slate-500 mt-0.5">
                           {new Date(r.date).toLocaleDateString("en-CA", {
                             year: "numeric",
                             month: "long",
@@ -296,10 +296,10 @@ export default async function ContractorProfilePage({
                         </p>
                       </div>
                     </div>
-                    <span className="inline-block bg-slate-100 text-gray-600 text-xs font-medium px-2.5 py-1 rounded-full mb-3">
+                    <span className="inline-block bg-slate-100 text-slate-600 text-xs font-medium px-2.5 py-1 rounded-full mb-3">
                       {r.service}
                     </span>
-                    <p className="text-gray-600 text-sm leading-relaxed">{r.body}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed">{r.body}</p>
                   </div>
                 ))}
               </div>
@@ -310,26 +310,26 @@ export default async function ContractorProfilePage({
           <div className="space-y-6">
 
             {/* Quick stats */}
-            <div className="bg-slate-50 rounded-2xl border border-gray-100 p-6">
-              <h3 className="font-bold text-[#0F172A] text-sm uppercase tracking-wider mb-4">
+            <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6">
+              <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider mb-4">
                 Business Info
               </h3>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-3 text-gray-600">
-                  <CalendarDays className="w-4 h-4 text-[#F97316] shrink-0" />
+                <li className="flex items-center gap-3 text-slate-600">
+                  <CalendarDays className="w-4 h-4 text-trust-700 shrink-0" />
                   In business since {c.founded} ({yearsInBusiness} yrs)
                 </li>
-                <li className="flex items-center gap-3 text-gray-600">
-                  <MapPin className="w-4 h-4 text-[#F97316] shrink-0" />
+                <li className="flex items-center gap-3 text-slate-600">
+                  <MapPin className="w-4 h-4 text-trust-700 shrink-0" />
                   Based in {c.city}, ON
                 </li>
-                <li className="flex items-center gap-3 text-gray-600">
-                  <UserCheck className="w-4 h-4 text-[#F97316] shrink-0" />
+                <li className="flex items-center gap-3 text-slate-600">
+                  <UserCheck className="w-4 h-4 text-trust-700 shrink-0" />
                   {c.reviewCount} verified reviews
                 </li>
-                <li className="flex items-center gap-3 text-gray-600">
-                  <Phone className="w-4 h-4 text-[#F97316] shrink-0" />
-                  <a href={`tel:${c.phone.replace(/\D/g, "")}`} className="hover:text-[#F97316] transition-colors">
+                <li className="flex items-center gap-3 text-slate-600">
+                  <Phone className="w-4 h-4 text-trust-700 shrink-0" />
+                  <a href={`tel:${c.phone.replace(/\D/g, "")}`} className="hover:text-trust-700 transition-colors">
                     {c.phone}
                   </a>
                 </li>
@@ -337,8 +337,8 @@ export default async function ContractorProfilePage({
             </div>
 
             {/* Services offered */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-              <h3 className="font-bold text-[#0F172A] text-sm uppercase tracking-wider mb-4">
+            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider mb-4">
                 Services Offered
               </h3>
               <ul className="space-y-2">
@@ -346,9 +346,9 @@ export default async function ContractorProfilePage({
                   <li key={s}>
                     <Link
                       href={`/services/${s}`}
-                      className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#F97316] transition-colors"
+                      className="flex items-center gap-2 text-sm text-slate-600 hover:text-trust-700 transition-colors"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#F97316] shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-trust-600 shrink-0" />
                       {serviceLabels[s] ?? s}
                     </Link>
                   </li>
@@ -357,15 +357,15 @@ export default async function ContractorProfilePage({
             </div>
 
             {/* Roof types */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-              <h3 className="font-bold text-[#0F172A] text-sm uppercase tracking-wider mb-4">
+            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider mb-4">
                 Roof Types
               </h3>
               <div className="flex flex-wrap gap-2">
                 {c.roofTypes.map((rt) => (
                   <span
                     key={rt}
-                    className="bg-[#F97316]/10 text-[#F97316] text-xs font-semibold px-3 py-1.5 rounded-full border border-[#F97316]/20"
+                    className="bg-trust-50 text-trust-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-trust-100"
                   >
                     {roofTypeLabels[rt] ?? rt}
                   </span>
@@ -374,15 +374,15 @@ export default async function ContractorProfilePage({
             </div>
 
             {/* Service areas */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-              <h3 className="font-bold text-[#0F172A] text-sm uppercase tracking-wider mb-4">
+            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <h3 className="font-bold text-slate-900 text-sm uppercase tracking-wider mb-4">
                 Service Areas
               </h3>
               <div className="flex flex-wrap gap-2">
                 {c.serviceAreas.map((area) => (
                   <span
                     key={area}
-                    className="bg-slate-50 text-gray-600 text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200"
+                    className="bg-slate-50 text-slate-600 text-xs font-medium px-3 py-1.5 rounded-full border border-slate-200"
                   >
                     {area}
                   </span>
@@ -391,7 +391,7 @@ export default async function ContractorProfilePage({
             </div>
 
             {/* Trust badges */}
-            <div className="bg-[#0F172A] rounded-2xl p-6">
+            <div className="bg-trust-950 rounded-2xl p-6">
               <h3 className="font-bold text-white text-sm uppercase tracking-wider mb-4">
                 Verified Credentials
               </h3>
@@ -404,10 +404,10 @@ export default async function ContractorProfilePage({
                 ].map(({ active, label }) => (
                   <li key={label} className="flex items-center gap-3">
                     <BadgeCheck
-                      className={`w-4 h-4 shrink-0 ${active ? "text-green-400" : "text-white/20"}`}
+                      className={`w-4 h-4 shrink-0 ${active ? "text-green-400" : "text-white/40"}`}
                       strokeWidth={2}
                     />
-                    <span className={`text-sm ${active ? "text-white/80" : "text-white/30 line-through"}`}>
+                    <span className={`text-sm ${active ? "text-white/90" : "text-white/50 line-through"}`}>
                       {label}
                     </span>
                   </li>
@@ -420,13 +420,13 @@ export default async function ContractorProfilePage({
       </div>
 
       {/* ── Quote Form ────────────────────────────────────────────── */}
-      <section id="quote" className="bg-gray-50 py-20 px-4">
+      <section id="quote" className="bg-slate-50 py-20 px-4">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-3 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 tracking-tight">
               Request a Quote from {c.name}
             </h2>
-            <p className="text-gray-500 text-base max-w-lg mx-auto">
+            <p className="text-slate-600 text-base max-w-lg mx-auto">
               Fill out the form and {c.name.split(" ")[0]} will be in touch within a few hours.
             </p>
           </div>
