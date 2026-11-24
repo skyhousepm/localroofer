@@ -24,17 +24,17 @@ export const services: ServiceData[] = [
     slug: "roof-repair",
     name: "Roof Repair",
     tagline:
-      "Fast, expert repairs that stop leaks and protect your home — backed by a workmanship guarantee.",
+      "Fast, expert repairs that stop leaks and protect your home, from local roofers who put the scope and warranty in writing.",
     description: [
       "Roof repairs are the most common roofing service GTA homeowners need, and timing matters. A small leak left unaddressed can lead to water infiltration, insulation damage, mould growth, and costly structural repairs. Whether it's a single missing shingle after a windstorm or persistent ice dam leaking damaging your ceilings every winter, getting it fixed quickly protects your home and your wallet.",
-      "LocalRoofer.ca connects you with local roofing contractors who diagnose the problem correctly the first time. Our network handles everything from minor patch repairs to complex multi-point failures — on asphalt shingles, flat roofs, metal roofing, and more. Every repair comes with a written scope of work and a workmanship warranty so you know exactly what you're getting.",
+      "LocalRoofer.ca connects you with local roofing contractors who diagnose the problem correctly the first time. Local roofers handle everything from minor patch repairs to complex multi-point failures — on asphalt shingles, flat roofs, metal roofing, and more. Ask for a written scope of work and the roofer's workmanship warranty before work starts, so you know exactly what you're getting.",
       "If you're seeing water stains on ceilings, missing or curling shingles, granule buildup in your gutters, or daylight through your attic — don't wait. A professional repair now is always cheaper than a replacement later.",
     ],
     benefits: [
       "Stops leaks before they cause mould, rot, or structural damage",
       "Extends the life of your existing roof by years",
       "Fast response — most repairs completed within 1–3 days",
-      "Written warranty on all workmanship",
+      "Written scope of work before any repair begins",
       "Covers all roof types: asphalt, flat, metal, and more",
     ],
     icon: "Wrench",
@@ -53,7 +53,7 @@ export const services: ServiceData[] = [
       },
       {
         title: "Final Inspection & Clean-Up",
-        desc: "Once work is complete, the contractor walks through findings with you, confirms the repair is watertight, removes all debris and nails from your property, and issues a written workmanship warranty.",
+        desc: "Once work is complete, the contractor walks through findings with you, confirms the repair is watertight, removes all debris and nails from your property, and gives you their workmanship warranty in writing.",
       },
     ],
     warningSigns: [
@@ -90,7 +90,7 @@ export const services: ServiceData[] = [
     slug: "roof-replacement",
     name: "Roof Replacement",
     tagline:
-      "Full roof replacements with premium materials and a long-term workmanship warranty.",
+      "Full roof replacements with premium materials, quoted in writing with the warranty terms spelled out.",
     description: [
       "Most asphalt shingle roofs in Ontario last between 20 and 30 years, depending on installation quality, ventilation, and maintenance. When repairs become frequent, costs start adding up, or your roof is simply at the end of its lifespan, a full replacement is the smarter long-term investment. A new roof improves your home's curb appeal, energy efficiency, and resale value — often paying for itself when you sell.",
       "LocalRoofer.ca works with local GTA roofing contractors who specialize in full tear-offs and replacements. We use premium materials rated for Ontario's harsh winters — including impact-resistant shingles, proper underlayment, ice and water shield along eaves and valleys, and ridge ventilation systems that prevent ice dams and extend the life of your new roof.",
@@ -214,7 +214,7 @@ export const services: ServiceData[] = [
       },
       {
         q: "Will my insurance company accept an inspection report from your contractors?",
-        a: "Yes. The written inspection reports provided by our network contractors include photographs, findings, and professional assessments that are accepted by major Ontario home insurers including Intact, Aviva, and Economical. If your insurer requires a specific format or additional detail, we can accommodate that request.",
+        a: "Yes. A written inspection report with photographs, findings, and a professional assessment is what most Ontario home insurers ask for. Check with your insurer first; if they need a specific format or extra detail, tell the roofer before the inspection.",
       },
     ],
   },
@@ -268,7 +268,7 @@ export const services: ServiceData[] = [
       },
       {
         q: "How quickly can you respond to an emergency call in the GTA?",
-        a: "Our network of GTA emergency contractors typically responds within two to four hours of an initial call during daylight hours. For serious structural emergencies, we do our best to have someone on site the same day. Response times can vary slightly based on location and the volume of concurrent emergency calls following major storm events.",
+        a: "Local emergency roofers typically respond within two to four hours of an initial call during daylight hours. For serious structural emergencies, we do our best to have someone on site the same day. Response times can vary slightly based on location and the volume of concurrent emergency calls following major storm events.",
       },
       {
         q: "What does emergency tarping involve?",
@@ -317,7 +317,7 @@ export const services: ServiceData[] = [
       },
       {
         title: "Post-Installation Inspection & Maintenance Plan",
-        desc: "The completed membrane is inspected for seam integrity, flashing quality, and proper drainage flow. You receive a written warranty for both materials and workmanship, along with a recommended annual maintenance schedule to maximize the life of your new flat roof system.",
+        desc: "The completed membrane is inspected for seam integrity, flashing quality, and proper drainage flow. Ask for the material and workmanship warranties in writing, along with a recommended annual maintenance schedule to maximize the life of your new flat roof system.",
       },
     ],
     warningSigns: [

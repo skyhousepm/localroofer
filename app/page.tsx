@@ -16,7 +16,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "LocalRoofer.ca — Trusted Roofing in Toronto & the GTA",
   description:
-    "Get a free roofing quote from LocalRoofer.ca. We connect Toronto & GTA homeowners with insured local roofers for repair, replacement, inspection, and emergency service.",
+    "Free roofing quotes from insured, WSIB-covered roofers across Toronto & the GTA. Repairs, replacements, inspections and 24/7 emergency service.",
   alternates: { canonical: SITE_URL },
 };
 
@@ -31,6 +31,7 @@ const jsonLd = {
   telephone: PHONE_TEL,
   email: CONTACT_EMAIL,
   image: `${SITE_URL}/opengraph-image`,
+  logo: `${SITE_URL}/brand/icon-512.png`,
   priceRange: "$$",
   openingHours: "Mo-Su 00:00-23:59",
   areaServed: locations.map((city) => ({
@@ -112,7 +113,7 @@ const roofTypes = [
 const homepageFaq = [
   {
     q: "What does a roof inspection cost?",
-    a: "A professional roof inspection with a written report typically costs between $150 and $350 in the GTA, depending on roof size and complexity. For home buyers, the investment is minimal compared to the cost of an undetected defect. Many contractors in our network also offer free visual assessments as part of a repair or replacement quote.",
+    a: "A professional roof inspection with a written report typically costs between $150 and $350 in the GTA, depending on roof size and complexity. For home buyers, the investment is minimal compared to the cost of an undetected defect. Many local contractors also offer free visual assessments as part of a repair or replacement quote.",
   },
   {
     q: "How long does a roof replacement take?",
@@ -269,7 +270,7 @@ export default function HomePage() {
         <div className={container}>
           <SectionHeading
             eyebrow="Services"
-            title="Every roofing job, one local network"
+            title="Every roofing job, handled by local roofers"
             intro="From a single missing shingle to a complete roof replacement, we connect GTA homeowners with the right local contractor for the job."
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">

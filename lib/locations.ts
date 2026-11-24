@@ -78,7 +78,7 @@ export const locations: CityData[] = [
     slug: "brampton",
     name: "Brampton",
     description:
-      "Brampton is one of Canada's fastest-growing cities, and its rooftops need contractors who can keep up. LocalRoofer.ca connects Brampton homeowners with local roofers offering fast turnaround, quality materials, and workmanship warranties — keeping families protected no matter the season.",
+      "Brampton is one of Canada's fastest-growing cities, and its rooftops need contractors who can keep up. LocalRoofer.ca connects Brampton homeowners with local roofers offering fast turnaround and quality materials — keeping families protected no matter the season.",
     serviceNote:
       "Serving Bramalea, Heart Lake, Springdale, Gore, and all Brampton neighbourhoods.",
     commonIssues: [
@@ -108,7 +108,7 @@ export const locations: CityData[] = [
     slug: "markham",
     name: "Markham",
     description:
-      "Markham's mix of established communities and newer builds demands consistent, high-quality roofing. LocalRoofer.ca connects Markham homeowners with local contractors for everything from minor repairs to full replacements — with materials and workmanship backed by warranty.",
+      "Markham's mix of established communities and newer builds demands consistent, high-quality roofing. LocalRoofer.ca connects Markham homeowners with local contractors for everything from minor repairs to full replacements — with written quotes that spell out materials and warranty terms.",
     serviceNote:
       "Serving Unionville, Cornell, Milliken, Greensborough, and all Markham communities.",
     commonIssues: [
@@ -168,7 +168,7 @@ export const locations: CityData[] = [
     slug: "richmond-hill",
     name: "Richmond Hill",
     description:
-      "Richmond Hill homeowners need roofers who understand the demands of Ontario winters — from heavy snowloads to ice damming along eaves. LocalRoofer.ca connects Richmond Hill residents with local contractors who provide thorough inspections, quality repairs, and full replacements with long-term warranties.",
+      "Richmond Hill homeowners need roofers who understand the demands of Ontario winters — from heavy snowloads to ice damming along eaves. LocalRoofer.ca connects Richmond Hill residents with local contractors who provide thorough inspections, quality repairs, and full replacements.",
     serviceNote:
       "Serving Oak Ridges, Jefferson, Bayview Hill, and all Richmond Hill communities.",
     commonIssues: [
@@ -288,7 +288,7 @@ export const locations: CityData[] = [
     slug: "whitby",
     name: "Whitby",
     description:
-      "Whitby's growing communities need roofing contractors who can handle everything from emergency leak repairs to complete re-roofs. LocalRoofer.ca pairs Whitby homeowners with local roofers who respond quickly and deliver quality work backed by a workmanship guarantee.",
+      "Whitby's growing communities need roofing contractors who can handle everything from emergency leak repairs to complete re-roofs. LocalRoofer.ca pairs Whitby homeowners with local roofers who respond quickly and put their quotes and warranty terms in writing.",
     serviceNote:
       "Serving Downtown Whitby, Pringle Creek, Brooklin, and all Whitby communities.",
     commonIssues: [
